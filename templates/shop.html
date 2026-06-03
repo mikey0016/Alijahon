@@ -1,1992 +1,420 @@
+{% extends 'base/base.html' %}
 {% load static %}
 
-<html lang="uz">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
-    <!-- Favicon Icon -->
-    <style type="text/css">:root, :host {
-        --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
-        --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
-        --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
-        --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
-        --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
-        --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
-        --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
-    }
-
-    svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
-        overflow: visible;
-        box-sizing: content-box;
-    }
-
-    .svg-inline--fa {
-        display: var(--fa-display, inline-block);
-        height: 1em;
-        overflow: visible;
-        vertical-align: -0.125em;
-    }
-
-    .svg-inline--fa.fa-2xs {
-        vertical-align: 0.1em;
-    }
-
-    .svg-inline--fa.fa-xs {
-        vertical-align: 0em;
-    }
-
-    .svg-inline--fa.fa-sm {
-        vertical-align: -0.0714285705em;
-    }
-
-    .svg-inline--fa.fa-lg {
-        vertical-align: -0.2em;
-    }
-
-    .svg-inline--fa.fa-xl {
-        vertical-align: -0.25em;
-    }
-
-    .svg-inline--fa.fa-2xl {
-        vertical-align: -0.3125em;
-    }
-
-    .svg-inline--fa.fa-pull-left {
-        margin-right: var(--fa-pull-margin, 0.3em);
-        width: auto;
-    }
-
-    .svg-inline--fa.fa-pull-right {
-        margin-left: var(--fa-pull-margin, 0.3em);
-        width: auto;
-    }
-
-    .svg-inline--fa.fa-li {
-        width: var(--fa-li-width, 2em);
-        top: 0.25em;
-    }
-
-    .svg-inline--fa.fa-fw {
-        width: var(--fa-fw-width, 1.25em);
-    }
-
-    .fa-layers svg.svg-inline--fa {
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-    .fa-layers-counter, .fa-layers-text {
-        display: inline-block;
-        position: absolute;
-        text-align: center;
-    }
-
-    .fa-layers {
-        display: inline-block;
-        height: 1em;
-        position: relative;
-        text-align: center;
-        vertical-align: -0.125em;
-        width: 1em;
-    }
-
-    .fa-layers svg.svg-inline--fa {
-        transform-origin: center center;
-    }
-
-    .fa-layers-text {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        transform-origin: center center;
-    }
-
-    .fa-layers-counter {
-        background-color: var(--fa-counter-background-color, #ff253a);
-        border-radius: var(--fa-counter-border-radius, 1em);
-        box-sizing: border-box;
-        color: var(--fa-inverse, #fff);
-        line-height: var(--fa-counter-line-height, 1);
-        max-width: var(--fa-counter-max-width, 5em);
-        min-width: var(--fa-counter-min-width, 1.5em);
-        overflow: hidden;
-        padding: var(--fa-counter-padding, 0.25em 0.5em);
-        right: var(--fa-right, 0);
-        text-overflow: ellipsis;
-        top: var(--fa-top, 0);
-        transform: scale(var(--fa-counter-scale, 0.25));
-        transform-origin: top right;
-    }
-
-    .fa-layers-bottom-right {
-        bottom: var(--fa-bottom, 0);
-        right: var(--fa-right, 0);
-        top: auto;
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: bottom right;
-    }
-
-    .fa-layers-bottom-left {
-        bottom: var(--fa-bottom, 0);
-        left: var(--fa-left, 0);
-        right: auto;
-        top: auto;
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: bottom left;
-    }
-
-    .fa-layers-top-right {
-        top: var(--fa-top, 0);
-        right: var(--fa-right, 0);
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: top right;
-    }
-
-    .fa-layers-top-left {
-        left: var(--fa-left, 0);
-        right: auto;
-        top: var(--fa-top, 0);
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: top left;
-    }
-
-    .fa-1x {
-        font-size: 1em;
-    }
-
-    .fa-2x {
-        font-size: 2em;
-    }
-
-    .fa-3x {
-        font-size: 3em;
-    }
-
-    .fa-4x {
-        font-size: 4em;
-    }
-
-    .fa-5x {
-        font-size: 5em;
-    }
-
-    .fa-6x {
-        font-size: 6em;
-    }
-
-    .fa-7x {
-        font-size: 7em;
-    }
-
-    .fa-8x {
-        font-size: 8em;
-    }
-
-    .fa-9x {
-        font-size: 9em;
-    }
-
-    .fa-10x {
-        font-size: 10em;
-    }
-
-    .fa-2xs {
-        font-size: 0.625em;
-        line-height: 0.1em;
-        vertical-align: 0.225em;
-    }
-
-    .fa-xs {
-        font-size: 0.75em;
-        line-height: 0.0833333337em;
-        vertical-align: 0.125em;
-    }
-
-    .fa-sm {
-        font-size: 0.875em;
-        line-height: 0.0714285718em;
-        vertical-align: 0.0535714295em;
-    }
-
-    .fa-lg {
-        font-size: 1.25em;
-        line-height: 0.05em;
-        vertical-align: -0.075em;
-    }
-
-    .fa-xl {
-        font-size: 1.5em;
-        line-height: 0.0416666682em;
-        vertical-align: -0.125em;
-    }
-
-    .fa-2xl {
-        font-size: 2em;
-        line-height: 0.03125em;
-        vertical-align: -0.1875em;
-    }
-
-    .fa-fw {
-        text-align: center;
-        width: 1.25em;
-    }
-
-    .fa-ul {
-        list-style-type: none;
-        margin-left: var(--fa-li-margin, 2.5em);
-        padding-left: 0;
-    }
-
-    .fa-ul > li {
-        position: relative;
-    }
-
-    .fa-li {
-        left: calc(-1 * var(--fa-li-width, 2em));
-        position: absolute;
-        text-align: center;
-        width: var(--fa-li-width, 2em);
-        line-height: inherit;
-    }
-
-    .fa-border {
-        border-color: var(--fa-border-color, #eee);
-        border-radius: var(--fa-border-radius, 0.1em);
-        border-style: var(--fa-border-style, solid);
-        border-width: var(--fa-border-width, 0.08em);
-        padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
-    }
-
-    .fa-pull-left {
-        float: left;
-        margin-right: var(--fa-pull-margin, 0.3em);
-    }
-
-    .fa-pull-right {
-        float: right;
-        margin-left: var(--fa-pull-margin, 0.3em);
-    }
-
-    .fa-beat {
-        animation-name: fa-beat;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, ease-in-out);
-    }
-
-    .fa-bounce {
-        animation-name: fa-bounce;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
-    }
-
-    .fa-fade {
-        animation-name: fa-fade;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-    }
-
-    .fa-beat-fade {
-        animation-name: fa-beat-fade;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-    }
-
-    .fa-flip {
-        animation-name: fa-flip;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, ease-in-out);
-    }
-
-    .fa-shake {
-        animation-name: fa-shake;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, linear);
-    }
-
-    .fa-spin {
-        animation-name: fa-spin;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 2s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, linear);
-    }
-
-    .fa-spin-reverse {
-        --fa-animation-direction: reverse;
-    }
-
-    .fa-pulse,
-    .fa-spin-pulse {
-        animation-name: fa-spin;
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, steps(8));
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .fa-beat,
-        .fa-bounce,
-        .fa-fade,
-        .fa-beat-fade,
-        .fa-flip,
-        .fa-pulse,
-        .fa-shake,
-        .fa-spin,
-        .fa-spin-pulse {
-            animation-delay: -1ms;
-            animation-duration: 1ms;
-            animation-iteration-count: 1;
-            transition-delay: 0s;
-            transition-duration: 0s;
-        }
-    }
-
-    @keyframes fa-beat {
-        0%, 90% {
-            transform: scale(1);
-        }
-        45% {
-            transform: scale(var(--fa-beat-scale, 1.25));
-        }
-    }
-
-    @keyframes fa-bounce {
-        0% {
-            transform: scale(1, 1) translateY(0);
-        }
-        10% {
-            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-        }
-        30% {
-            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-        }
-        50% {
-            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-        }
-        57% {
-            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-        }
-        64% {
-            transform: scale(1, 1) translateY(0);
-        }
-        100% {
-            transform: scale(1, 1) translateY(0);
-        }
-    }
-
-    @keyframes fa-fade {
-        50% {
-            opacity: var(--fa-fade-opacity, 0.4);
-        }
-    }
-
-    @keyframes fa-beat-fade {
-        0%, 100% {
-            opacity: var(--fa-beat-fade-opacity, 0.4);
-            transform: scale(1);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(var(--fa-beat-fade-scale, 1.125));
-        }
-    }
-
-    @keyframes fa-flip {
-        50% {
-            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-        }
-    }
-
-    @keyframes fa-shake {
-        0% {
-            transform: rotate(-15deg);
-        }
-        4% {
-            transform: rotate(15deg);
-        }
-        8%, 24% {
-            transform: rotate(-18deg);
-        }
-        12%, 28% {
-            transform: rotate(18deg);
-        }
-        16% {
-            transform: rotate(-22deg);
-        }
-        20% {
-            transform: rotate(22deg);
-        }
-        32% {
-            transform: rotate(-12deg);
-        }
-        36% {
-            transform: rotate(12deg);
-        }
-        40%, 100% {
-            transform: rotate(0deg);
-        }
-    }
-
-    @keyframes fa-spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    .fa-rotate-90 {
-        transform: rotate(90deg);
-    }
-
-    .fa-rotate-180 {
-        transform: rotate(180deg);
-    }
-
-    .fa-rotate-270 {
-        transform: rotate(270deg);
-    }
-
-    .fa-flip-horizontal {
-        transform: scale(-1, 1);
-    }
-
-    .fa-flip-vertical {
-        transform: scale(1, -1);
-    }
-
-    .fa-flip-both,
-    .fa-flip-horizontal.fa-flip-vertical {
-        transform: scale(-1, -1);
-    }
-
-    .fa-rotate-by {
-        transform: rotate(var(--fa-rotate-angle, 0));
-    }
-
-    .fa-stack {
-        display: inline-block;
-        vertical-align: middle;
-        height: 2em;
-        position: relative;
-        width: 2.5em;
-    }
-
-    .fa-stack-1x,
-    .fa-stack-2x {
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: var(--fa-stack-z-index, auto);
-    }
-
-    .svg-inline--fa.fa-stack-1x {
-        height: 1em;
-        width: 1.25em;
-    }
-
-    .svg-inline--fa.fa-stack-2x {
-        height: 2em;
-        width: 2.5em;
-    }
-
-    .fa-inverse {
-        color: var(--fa-inverse, #fff);
-    }
-
-    .sr-only,
-    .fa-sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-
-    .sr-only-focusable:not(:focus),
-    .fa-sr-only-focusable:not(:focus) {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-
-    .svg-inline--fa .fa-primary {
-        fill: var(--fa-primary-color, currentColor);
-        opacity: var(--fa-primary-opacity, 1);
-    }
-
-    .svg-inline--fa .fa-secondary {
-        fill: var(--fa-secondary-color, currentColor);
-        opacity: var(--fa-secondary-opacity, 0.4);
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-primary {
-        opacity: var(--fa-secondary-opacity, 0.4);
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-secondary {
-        opacity: var(--fa-primary-opacity, 1);
-    }
-
-    .svg-inline--fa mask .fa-primary,
-    .svg-inline--fa mask .fa-secondary {
-        fill: black;
-    }
-
-    .fad.fa-inverse,
-    .fa-duotone.fa-inverse {
-        color: var(--fa-inverse, #fff);
-    }</style>
-    <link rel="icon" type="image/png" href=" {% static 'apps/fav-icon.png' %} ">
-    <!-- Bootstrap core CSS -->
-    <link href=" {% static 'apps/bootstrap.min.css' %} " rel="stylesheet">
-    <!-- Font Awesome-->
-    <link href=" {% static 'apps/all.min.css' %} " rel="stylesheet">
-    <link href=" {% static 'apps/icofont.min.css' %} " rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href=" {% static 'apps/style.css' %} " rel="stylesheet">
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href=" {% static 'apps/owl.carousel.css' %} ">
-    <link rel="stylesheet" href=" {% static 'apps/owl.theme.css' %} ">
-    <link rel="manifest" href=" {% static 'apps/manifest.json' %} ">
-
-    <!-- Modern UI Styles -->
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --primary-dark: #4338ca;
-            --primary-light: #818cf8;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --info-color: #3b82f6;
-            --dark-bg: #1e293b;
-            --light-bg: #f8fafc;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="uz">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>body {
+            transition: opacity ease-in 0.2s;
         }
 
-        * {
-            transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f8fafc;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1400px;
-        }
-
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
+        body[unresolved] {
+            opacity: 0;
+            display: block;
             overflow: hidden;
+            position: relative;
         }
+        </style>
 
-        .card:hover {
-            box-shadow: var(--card-shadow-hover);
-            transform: translateY(-4px);
-        }
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title></title>
+        <link rel="icon" type="image/png" href="https://alijahon.uz/static/apps/img/fav-icon.png">
+        <link href="{% static 'category_files/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'category_files/all.min.css' %}" rel="stylesheet">
+        <link href="{% static 'category_files/icofont.min.css' %}" rel="stylesheet">
+        <link href="{% static 'category_files/style.css ' %}" rel="stylesheet'">
+        <link rel="stylesheet" href="{% static 'category_files/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'category_files/owl.theme.css' %}">
+        <link rel="manifest" href="https://alijahon.uz/static/apps/json/manifest.json">
+        <style>
+            :root {
+                --primary-color: #4f46e5;
+                --primary-dark: #4338ca;
+                --primary-light: #818cf8;
+                --success-color: #10b981;
+                --warning-color: #f59e0b;
+                --danger-color: #ef4444;
+                --info-color: #3b82f6;
+                --dark-bg: #1e293b;
+                --light-bg: #f8fafc;
+                --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
 
-        .btn {
-            border-radius: 12px;
-            padding: 10px 24px;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-        }
+            * {
+                transition: all 0.3s ease;
+            }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: white;
-        }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                background: #f8fafc;
+                min-height: 100vh;
+            }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-        }
-
-        .form-control, .form-select {
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
-            padding: 12px 16px;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-
-        .badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .table {
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .table thead {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                max-width: 1400px;
             }
 
             .card {
-                margin-bottom: 20px;
+                border: none;
+                border-radius: 16px;
+                box-shadow: var(--card-shadow);
+                overflow: hidden;
+            }
+
+            .card:hover {
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-4px);
             }
 
             .btn {
-                width: 100%;
-                margin-bottom: 10px;
+                border-radius: 12px;
+                padding: 10px 24px;
+                font-weight: 600;
+                border: none;
+                transition: all 0.3s ease;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+            }
+
+            .form-control, .form-select {
+                border-radius: 12px;
+                border: 2px solid #e2e8f0;
+                padding: 12px 16px;
+            }
+
+            .form-control:focus, .form-select:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            }
+
+            .badge {
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-weight: 600;
             }
 
             .table {
-                font-size: 12px;
+                border-radius: 12px;
+                overflow: hidden;
             }
 
-            .col-md-3, .col-md-9 {
-                padding: 0 10px;
+            .table thead {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+                color: white;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 10px;
+                }
+
+                .card {
+                    margin-bottom: 20px;
+                }
+
+                .btn {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .table {
+                    font-size: 12px;
+                }
+
+                .col-md-3, .col-md-9 {
+                    padding: 0 10px;
+                }
+            }
+        </style>
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/static/apps/js/sw.js')
+                    .then(function (reg) {
+                        console.log("Service Worker ro'yxatdan o'tdi!", reg);
+                    })
+                    .catch(function (err) {
+                        console.log("Service Worker xatosi!", err);
+                    });
+            }
+        </script>
+
+
+        <link rel="stylesheet" href="{% static 'category_files/product_by_category_style.css' %}">
+
+    </head>
+    <body>
+
+    <section class="products-listing-page py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <aside class="sidebar-filters">
+                        <div class="filter-card">
+                            <div class="filter-header" id="filterToggleBtn">
+                                <h5 class="filter-title">
+                                    <i class="icofont-filter"></i>
+                                    Kategoriyalar
+                                </h5>
+                                <button class="mobile-toggle-btn d-lg-none" type="button">
+                                    <i class="icofont-rounded-down"></i>
+                                </button>
+                            </div>
+                            <div class="filter-body" id="filterBody">
+                                <nav class="categories-nav">
+                                    {% for cate in cate_date %}
+                                        <a href="{% url 'category' cate.pk %}" class="category-link ">
+                                            <span class="category-name">{{ cate.title }}</span>
+                                            <i class="icofont-rounded-right"></i>
+                                        </a>
+                                    {% endfor %}
+
+
+                                </nav>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="page-header mb-4">
+                        <div class="breadcrumb-wrapper">
+                            <a href="{% url 'home' %}" class="breadcrumb-link">
+                                <i class="icofont-home"></i>
+                                Bosh sahifa
+                            </a>
+                            <span class="breadcrumb-separator">
+                                <i class="icofont-thin-right"></i>
+                            </span>
+                            {% if cate_name %}
+                                <span class="breadcrumb-current">{{ cate_name.name }}</span>
+
+                            {% else %}
+                                <span class="breadcrumb-current">Barchasi</span>
+                            {% endif %}
+
+                        </div>
+
+                        <h1 class="page-title">
+                            Barcha mahsulotlar
+                        </h1>
+                    </div>
+
+                    <div class="products-grid">
+                        <div class="row g-3">
+                            {% for pro in pro_data %}
+                                <div class="col-6 col-md-4">
+                                    <div class="product-card">
+                                        <a href=""
+                                           class="product-image-link">
+                                            <div class="product-image-wrapper">
+                                                <img src="{{ pro.image.url }}" class="product-image"
+                                                     loading="lazy">
+                                            </div>
+                                        </a>
+                                        <div class="product-info">
+                                            <h6 class="product-title">
+                                                <a href="">
+                                                    {{ pro.title }}
+                                                </a>
+                                            </h6>
+                                            <p class="product-price">
+                                                {{ pro.price }} so'm
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="pagination-wrapper mt-5">
+                        <nav aria-label="Sahifalar navigatsiyasi">
+                            <ul class="custom-pagination">
+                                <li class="page-item disabled">
+                                            <span class="page-link">
+                                                <i class="icofont-rounded-left"></i>
+                                            </span>
+                                </li>
+
+
+                                <li class="page-item active">
+                                    <a class="page-link" href="https://alijahon.uz/category?page=1">1</a>
+                                </li>
+
+
+                                <li class="page-item ">
+                                    <a class="page-link" href="https://alijahon.uz/category?page=2">2</a>
+                                </li>
+
+
+                                <li class="page-item ">
+                                    <a class="page-link" href="https://alijahon.uz/category?page=3">3</a>
+                                </li>
+
+
+                                <!-- Last Page -->
+
+                                <li class="page-item disabled">
+                                    <span class="page-link">...</span>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="https://alijahon.uz/category?page=29">
+                                        29
+                                    </a>
+                                </li>
+
+
+                                <!-- Next Button -->
+
+                                <li class="page-item">
+                                    <a class="page-link" href="https://alijahon.uz/category?page=2"
+                                       aria-label="Keyingi">
+                                        <i class="icofont-rounded-right"></i>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile filter toggle
+            const filterHeader = document.getElementById('filterToggleBtn');
+            const filterBody = document.getElementById('filterBody');
+            const toggleBtn = filterHeader.querySelector('.mobile-toggle-btn');
+
+            // Faqat mobile da ishlashi uchun
+            if (window.innerWidth < 992) {
+                // Boshlang'ich holatda yopiq bo'lishi
+                filterBody.classList.add('collapsed');
+
+                filterHeader.addEventListener('click', function () {
+                    filterBody.classList.toggle('collapsed');
+                    filterBody.classList.toggle('show');
+
+                    if (toggleBtn) {
+                        toggleBtn.classList.toggle('active');
+                    }
+                });
+            }
+
+            // Window resize da tekshirish
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 992) {
+                    // Desktop da har doim ochiq
+                    filterBody.classList.remove('collapsed');
+                    filterBody.classList.remove('show');
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('active');
+                    }
+                } else {
+                    // Mobile da yopiq
+                    if (!filterBody.classList.contains('show')) {
+                        filterBody.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+
+
+    <style>
+        .modern-footer {
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin-top: 60px;
+        }
+
+        .footer-copyright {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 24px 0;
+            color: white;
+        }
+
+        .copyright-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .copyright-text {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .copyright-text a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .copyright-text a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .modern-footer {
+                margin-top: 40px;
+            }
+
+            .footer-copyright {
+                padding: 20px 0;
+            }
+
+            .copyright-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
             }
         }
     </style>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(' {% static 'apps/sw.js' %} ')
-                .then(function (reg) {
-                    console.log("Service Worker ro'yxatdan o'tdi!", reg);
-                })
-                .catch(function (err) {
-                    console.log("Service Worker xatosi!", err);
-                });
-        }
-    </script>
 
-
-    <link rel="stylesheet" href=" {% static 'apps/product_by_category_style.css' %} ">
-
-    <link rel="stylesheet"
-          href="chrome-extension://inhcgfpbfdjbjogdfjbclgolkmhnooop/aitopia/assets/b1787eab876d2c84860f82cc9bc36451.css">
-    <link rel="stylesheet"
-          href="chrome-extension://inhcgfpbfdjbjogdfjbclgolkmhnooop/aitopia/assets/86211712efab768f9d4be4adfecbebbe.css">
-</head>
-<body>
-
-
-<style>
-    .modern-header {
-        background: white;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    .modern-navbar {
-        padding: 0;
-    }
-
-    .navbar-brand-modern {
-        padding: 12px 0;
-    }
-
-    .navbar-brand-modern img {
-        height: 45px;
-        width: auto;
-        transition: transform 0.3s ease;
-    }
-
-    .navbar-brand-modern:hover img {
-        transform: scale(1.05);
-    }
-
-    .nav-link-modern {
-        padding: 20px 16px !important;
-        font-weight: 600;
-        color: #475569 !important;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .nav-item.dropdown.mega-menu {
-        position: static;
-    }
-
-    .nav-item.dropdown.profile-dropdown-nav {
-        position: relative;
-    }
-
-    .nav-link-modern::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 3px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        transition: width 0.3s ease;
-    }
-
-    .nav-link-modern:hover,
-    .nav-link-modern.active {
-        color: #667eea !important;
-    }
-
-    .nav-link-modern:hover::after {
-        width: 80%;
-    }
-
-    .search-box-header {
-        position: relative;
-        width: 400px;
-        max-width: 100%;
-    }
-
-    .search-box-header input {
-        width: 100%;
-        padding: 10px 45px 10px 20px;
-        border: 2px solid #e2e8f0;
-        border-radius: 30px;
-        transition: all 0.3s ease;
-    }
-
-    .search-box-header input:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        outline: none;
-    }
-
-    .search-box-header button {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        color: white;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .profile-dropdown-modern {
-        border-radius: 16px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-        border: none !important;
-        padding: 8px 0;
-        margin-top: 10px;
-        min-width: 250px;
-        right: 0 !important;
-        left: auto !important;
-    }
-
-    .dropdown-item-modern {
-        padding: 12px 24px;
-        font-weight: 500;
-        color: #475569;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .dropdown-item-modern i {
-        width: 20px;
-        font-size: 18px;
-        color: #667eea;
-    }
-
-    .dropdown-item-modern:hover {
-        background: linear-gradient(90deg, rgba(102, 126, 234, 0.08) 0%, transparent 100%);
-        color: #667eea;
-    }
-
-    .profile-pic-modern {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        border: 2px solid #667eea;
-        object-fit: cover;
-    }
-
-    .mega-dropdown-modern {
-        border-radius: 16px !important;
-        border: none !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-        padding: 30px 20px !important;
-        margin-top: 10px !important;
-        width: 90% !important;
-        max-width: 1200px !important;
-        left: 5% !important;
-        right: 5% !important;
-    }
-
-    .mega-list-modern {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .mega-list-modern a {
-        padding: 8px 12px;
-        color: #475569;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        font-size: 13px;
-        white-space: nowrap;
-        display: block;
-    }
-
-    .mega-list-modern a:hover {
-        background: linear-gradient(90deg, rgba(102, 126, 234, 0.08) 0%, transparent 100%);
-        color: #667eea;
-        transform: translateX(4px);
-    }
-
-    .dropdown-toggle::after {
-        display: none;
-    }
-
-    .navbar-toggler-modern {
-        border: 2px solid #667eea;
-        padding: 8px 12px;
-        border-radius: 8px;
-    }
-
-    @media (max-width: 992px) {
-        .search-box-header {
-            width: 100%;
-            margin: 16px 0;
-        }
-
-        .nav-link-modern {
-            padding: 12px 16px !important;
-        }
-
-        .nav-link-modern::after {
-            display: none;
-        }
-
-        .mega-dropdown-modern {
-            min-width: 100% !important;
-            left: 0 !important;
-            transform: none !important;
-            padding: 16px !important;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .mega-dropdown-modern .row {
-            flex-direction: column;
-        }
-
-        .mega-dropdown-modern .col-lg-2 {
-            width: 100%;
-        }
-    }
-</style>
-
-<div class="modern-header">
-    <nav class="navbar navbar-expand-lg navbar-light modern-navbar">
-        <div class="container">
-            <a class="navbar-brand navbar-brand-modern" href="/">
-                <img src=" {% static 'apps/alijahon.png' %} " alt="Alijahon.uz">
-            </a>
-
-            <button class="navbar-toggler navbar-toggler-modern" type="button" data-toggle="collapse"
-                    data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-modern" href="/">
-                            <i class="icofont-ui-home"></i> Bosh sahifa
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link nav-link-modern dropdown-toggle" href="#" data-toggle="dropdown">
-                            <i class="icofont-list"></i> Kategoriyalar
-                        </a>
-                        <div class="dropdown-menu mega-dropdown-modern">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                        <a href="/category/uy-uchun">
-                                            Uy ruzg'or uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/bolalar-uchun">
-                                            Bolalar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/sovga">
-                                            Sovg'alar
-                                        </a>
-
-                                        <a href="/category/ayollar">
-                                            Ayollar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/davolovchi-mahsulotlar">
-                                            Davolovchi mahsulotlar
-                                        </a>
-
-                                        <a href="/category/erkaklar-uchun">
-                                            Erkaklar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/fitnes">
-                                            Fitnes trenajorlar
-                                        </a>
-
-                                        <a href="/category/davolovchi-mazlar">
-                                            Davolovchi mazlar
-                                        </a>
-
-                                        <a href="/category/moshina-uchun">
-                                            Moshina uchun
-                                        </a>
-
-                                        <a href="/category/kitoblar">
-                                            Kitoblar
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                        <a href="/category/aqlli-soatlar">
-                                            soatlar
-                                        </a>
-
-                                        <a href="/category/atir">
-                                            Atirlar
-                                        </a>
-
-                                        <a href="/category/yangi-yel-maxsulotlari">
-                                            Yangi yil maxsulotlari
-                                        </a>
-
-                                        <a href="/category/eliktironika">
-                                            Elektironika
-                                        </a>
-
-                                        <a href="/category/kozoynaklar">
-                                            Kozoynaklar
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-modern" href="/category">
-                            <i class="icofont-shopping-cart"></i> Do'kon
-                        </a>
-                    </li>
-                </ul>
-
-                <form action="/search" method="POST" class="search-box-header" autocomplete="off">
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                           value="cvOScRUe6SKiOsiCyShmrw3vNHYv3dldmTfpZIBTUzoFp7nGPTwP2YLKZRvTywpG">
-                    <input id="search-input" name="product" type="search" placeholder="Mahsulot qidirish...">
-                    <button type="submit">
-                        <i class="icofont-search"></i>
-                    </button>
-                </form>
-
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item">
-                        <a href="#" data-target="#login" data-toggle="modal" class="nav-link nav-link-modern">
-                            <i class="icofont-ui-user"></i> Kirish
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-
-
-<div class="modal fade login-modal-main show" id="login" style="padding-right: 8px; display: none;" aria-modal="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="login-modal">
-                    <div class="row">
-                        <div class="col-lg-6 d-flex align-items-center">
-                            <div class="login-modal-left p-4 text-center pl-5">
-                                <img src=" {% static 'apps/alijahon.png' %} " alt="..." style="width: 300px;">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <button type="button" class="close close-top-right position-absolute" data-dismiss="modal"
-                                    aria-label="Close">
-                                <span aria-hidden="true"><i class="icofont-close-line"></i></span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <ul class="mt-4 mr-4 nav nav-tabs-login float-right position-absolute" role="tablist">
-                                <li>
-                                    <a class="nav-link-login active" data-toggle="tab" href="#login-form" role="tab"><i
-                                            class="icofont-ui-lock"></i> Login</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link-login" data-toggle="tab" href="#register" role="tab"><i
-                                            class="icofont icofont-pencil"></i> Ro'yxatdan o'tish</a>
-                                </li>
-                            </ul>
-                            <div class="login-modal-right p-4">
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="login-form" role="tabpanel">
-                                        <form action="/login" method="post">
-                                            <input type="hidden" name="csrfmiddlewaretoken"
-                                                   value="cvOScRUe6SKiOsiCyShmrw3vNHYv3dldmTfpZIBTUzoFp7nGPTwP2YLKZRvTywpG">
-                                            <h5 class="heading-design-h5 text-dark">Login</h5>
-                                            <fieldset class="form-group mt-4">
-                                                <label>Telefon</label>
-                                                <input type="text" id="phone-mask" class="form-control"
-                                                       name="phone_number" placeholder="Telefon raqam">
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <label>Parol</label>
-                                                <input type="password" class="form-control" name="password"
-                                                       placeholder="****">
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <button type="submit" class="btn btn-lg btn-primary btn-block">
-                                                    Kirish
-                                                </button>
-                                            </fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">
-                                                    Eslab qolish
-                                                </label>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div class="tab-pane" id="register" role="tabpanel">
-                                        <form action="/register" method="post">
-                                            <input type="hidden" name="csrfmiddlewaretoken"
-                                                   value="cvOScRUe6SKiOsiCyShmrw3vNHYv3dldmTfpZIBTUzoFp7nGPTwP2YLKZRvTywpG">
-                                            <h5 class="heading-design-h5 text-dark">Register</h5>
-                                            <fieldset class="form-group mt-4">
-                                                <label>Telefon</label>
-                                                <input type="text" id="phone-mask-two" name="phone_number"
-                                                       class="form-control" placeholder="Telefon raqam">
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <label>Parol</label>
-                                                <input type="password" name="password" class="form-control"
-                                                       placeholder="***">
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <label>Parolni takrorlash</label>
-                                                <input type="password" name="conf_password" class="form-control"
-                                                       placeholder="***">
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <button type="submit" class="btn btn-lg btn-primary btn-block">
-                                                    Yangi akkaunt ochish
-                                                </button>
-                                            </fieldset>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                <label class="custom-control-label" for="customCheck2">
-                                                    <a href="#">Barcha shartlar</a>ga roziman
-                                                </label>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
-<script>
-    $('#phone-mask').inputmask({
-        "mask": "+\\9\\98(99) 999-99-99"
-    });
-    $('#phone-mask-two').inputmask({
-        "mask": "+\\9\\98(99) 999-99-99"
-    });
-</script>
-
-
-<section class="products-listing-page py-4">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Sidebar Categories -->
-            <div class="col-lg-3">
-                <aside class="sidebar-filters">
-                    <div class="filter-card">
-                        <div class="filter-header" id="filterToggleBtn">
-                            <h5 class="filter-title">
-                                <i class="icofont-filter"></i>
-                                Kategoriyalar
-                            </h5>
-                            <button class="mobile-toggle-btn d-lg-none" type="button">
-                                <i class="icofont-rounded-down"></i>
-                            </button>
-                        </div>
-                        <div class="filter-body collapsed" id="filterBody">
-                            <nav class="categories-nav">
-
-                                <a href="/category/uy-uchun" class="category-link ">
-                                    <span class="category-name">Uy ruzg'or uchun maxsulotlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/bolalar-uchun" class="category-link ">
-                                    <span class="category-name">Bolalar uchun maxsulotlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/sovga" class="category-link ">
-                                    <span class="category-name">Sovg'alar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/ayollar" class="category-link ">
-                                    <span class="category-name">Ayollar uchun maxsulotlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/davolovchi-mahsulotlar" class="category-link ">
-                                    <span class="category-name">Davolovchi mahsulotlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/erkaklar-uchun" class="category-link ">
-                                    <span class="category-name">Erkaklar uchun maxsulotlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/fitnes" class="category-link ">
-                                    <span class="category-name">Fitnes trenajorlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/davolovchi-mazlar" class="category-link ">
-                                    <span class="category-name">Davolovchi mazlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/moshina-uchun" class="category-link ">
-                                    <span class="category-name">Moshina uchun</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/kitoblar" class="category-link ">
-                                    <span class="category-name">Kitoblar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/aqlli-soatlar" class="category-link ">
-                                    <span class="category-name">soatlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/atir" class="category-link ">
-                                    <span class="category-name">Atirlar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/yangi-yel-maxsulotlari" class="category-link ">
-                                    <span class="category-name">Yangi yil  maxsulotlari</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/eliktironika" class="category-link ">
-                                    <span class="category-name">Elektironika</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                                <a href="/category/kozoynaklar" class="category-link ">
-                                    <span class="category-name">Kozoynaklar</span>
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-
-                            </nav>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col-lg-9">
-                <!-- Breadcrumb & Title -->
-                <div class="page-header mb-4">
-                    <div class="breadcrumb-wrapper">
-                        <a href="/" class="breadcrumb-link">
-                            <i class="icofont-home"></i>
-                            Bosh sahifa
-                        </a>
-                        <span class="breadcrumb-separator">
-                                <i class="icofont-thin-right"></i>
-                            </span>
-
-                        <span class="breadcrumb-current">Barchasi</span>
-
-                    </div>
-
-                    <h1 class="page-title">
-
-                        Barcha mahsulotlar
-
-                    </h1>
-                </div>
-
-                <!-- Products Grid -->
-                <div class="products-grid">
-                    <div class="row g-3">
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/osmali-shanoun" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2026/04/28/IMG_7081.webp" class="product-image"
-                                             alt="Osmali shanpun" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/osmali-shanoun">
-                                            Osmali shanpun
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        79&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/tish-pasta-busaurus" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2026/01/25/IMG_5345.jpeg" class="product-image"
-                                             alt="Tish pasta Busaurus" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/tish-pasta-busaurus">
-                                            Tish pasta Busaurus
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        69&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/portativ-igalyator-1" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/12/11/IMG_4314_KIqSxx5.webp"
-                                             class="product-image" alt="Portativ IGALYATOR" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/portativ-igalyator-1">
-                                            Portativ IGALYATOR
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        79&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/archa" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/12/10/IMG_4531.webp" class="product-image"
-                                             alt="Archa !!!" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/archa">
-                                            Archa !!!
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        125&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/tish-oqartiruvchi-hismile-v34" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/12/08/IMG_4500.webp" class="product-image"
-                                             alt="Tish oqartiruvchi Hismile V34" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/tish-oqartiruvchi-hismile-v34">
-                                            Tish oqartiruvchi Hismile V34
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        79&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/suyuq-sovun-150" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/12/01/IMG_4382.webp" class="product-image"
-                                             alt="Suyuq sovun 2" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/suyuq-sovun-150">
-                                            Suyuq sovun 2
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        59&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/poyabzal-quritgich" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/12/01/IMG_4378.webp" class="product-image"
-                                             alt="Poyabzal quritgich" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/poyabzal-quritgich">
-                                            Poyabzal quritgich
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        129&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/pushka-2kv" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/11/14/IMG_4029.webp" class="product-image"
-                                             alt="Pushka 2kv" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/pushka-2kv">
-                                            Pushka 2kv
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        177&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/violent-fan" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/11/01/IMG_3814.webp" class="product-image"
-                                             alt="VIOLENT FAN" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/violent-fan">
-                                            VIOLENT FAN
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        169&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/magic-cool" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/10/13/IMG_3328.webp" class="product-image"
-                                             alt="Magic Cool" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/magic-cool">
-                                            Magic Cool
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        89&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/seven-green-tabiiy-parvarish-uchun" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/09/26/IMG_2950.webp" class="product-image"
-                                             alt="Seven green - tabiiy parvarish uchun" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/seven-green-tabiiy-parvarish-uchun">
-                                            Seven green - tabiiy parvarish uchun
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        59&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/kojiesan" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/09/22/IMG_2856.webp" class="product-image"
-                                             alt="Kojie*san" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/kojiesan">
-                                            Kojie*san
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        59&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/18-funksiali-moslama" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/09/17/IMG_2770.webp" class="product-image"
-                                             alt="18xil funksiali moslama" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/18-funksiali-moslama">
-                                            18xil funksiali moslama
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        69&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/ultrafeoliteviy-fonar" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/09/15/IMG_2708.webp" class="product-image"
-                                             alt="Ultrafeoliteviy fonar" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/ultrafeoliteviy-fonar">
-                                            Ultrafeoliteviy fonar
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        79&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/keramik-isitgich" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/09/13/IMG_2670.webp" class="product-image"
-                                             alt="Keramik isitgich" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/keramik-isitgich">
-                                            Keramik isitgich
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        359&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/zepter" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/08/20/IMG_2172.webp" class="product-image"
-                                             alt="Zepter" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/zepter">
-                                            Zepter
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        149&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/led-massajyor" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/07/13/IMG_1281.webp" class="product-image"
-                                             alt="Led Massajyor" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/led-massajyor">
-                                            Led Massajyor
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        149&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/tarakan-va-suvaraklar-uchun-kapsula"
-                                   class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/07/09/IMG_1190_IFfr2PQ.webp"
-                                             class="product-image" alt="Tarakan va suvaraklar uchun kapsula"
-                                             loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/tarakan-va-suvaraklar-uchun-kapsula">
-                                            Tarakan va suvaraklar uchun kapsula
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        59&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/fan-light-lampa" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/06/28/IMG_0974.webp" class="product-image"
-                                             alt="Fan Light lampa" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/fan-light-lampa">
-                                            Fan Light lampa
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        129&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="product-card">
-                                <a href="/product-detail/mine-baseen-18351" class="product-image-link">
-                                    <div class="product-image-wrapper">
-                                        <img src="/media/products/2025/05/10/IMG_0222.webp" class="product-image"
-                                             alt="Mine baseen 183/51" loading="lazy">
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <h6 class="product-title">
-                                        <a href="/product-detail/mine-baseen-18351">
-                                            Mine baseen 183/51
-                                        </a>
-                                    </h6>
-                                    <p class="product-price">
-                                        269&nbsp;000 so'm
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-
-                <div class="pagination-wrapper mt-5">
-                    <nav aria-label="Sahifalar navigatsiyasi">
-                        <ul class="custom-pagination">
-                            <!-- Previous Button -->
-
-                            <li class="page-item disabled">
-                                            <span class="page-link">
-                                                <i class="icofont-rounded-left"></i>
-                                            </span>
-                            </li>
-
-
-                            <!-- First Page -->
-
-
-                            <!-- Page Numbers -->
-
-
-                            <li class="page-item active">
-                                <a class="page-link" href="?page=1">1</a>
-                            </li>
-
-
-                            <li class="page-item ">
-                                <a class="page-link" href="?page=2">2</a>
-                            </li>
-
-
-                            <li class="page-item ">
-                                <a class="page-link" href="?page=3">3</a>
-                            </li>
-
-
-                            <!-- Last Page -->
-
-                            <li class="page-item disabled">
-                                <span class="page-link">...</span>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="?page=7">
-                                    7
-                                </a>
-                            </li>
-
-
-                            <!-- Next Button -->
-
-                            <li class="page-item">
-                                <a class="page-link" href="?page=2" aria-label="Keyingi">
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </nav>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Mobile filter toggle
-        const filterHeader = document.getElementById('filterToggleBtn');
-        const filterBody = document.getElementById('filterBody');
-        const toggleBtn = filterHeader.querySelector('.mobile-toggle-btn');
-
-        // Faqat mobile da ishlashi uchun
-        if (window.innerWidth < 992) {
-            // Boshlang'ich holatda yopiq bo'lishi
-            filterBody.classList.add('collapsed');
-
-            filterHeader.addEventListener('click', function () {
-                filterBody.classList.toggle('collapsed');
-                filterBody.classList.toggle('show');
-
-                if (toggleBtn) {
-                    toggleBtn.classList.toggle('active');
-                }
-            });
-        }
-
-        // Window resize da tekshirish
-        window.addEventListener('resize', function () {
-            if (window.innerWidth >= 992) {
-                // Desktop da har doim ochiq
-                filterBody.classList.remove('collapsed');
-                filterBody.classList.remove('show');
-                if (toggleBtn) {
-                    toggleBtn.classList.remove('active');
-                }
-            } else {
-                // Mobile da yopiq
-                if (!filterBody.classList.contains('show')) {
-                    filterBody.classList.add('collapsed');
-                }
-            }
-        });
-    });
-</script>
-
-
-<style>
-    .modern-footer {
-        background: white;
-        border-top: 1px solid #e2e8f0;
-        padding: 0;
-        margin-top: 60px;
-    }
-
-    .footer-copyright {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 24px 0;
-        color: white;
-    }
-
-    .copyright-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 16px;
-    }
-
-    .copyright-text {
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .copyright-text a {
-        color: white;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .copyright-text a:hover {
-        opacity: 0.8;
-    }
-
-    .footer-links {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-    }
-
-    .footer-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        transition: all 0.3s ease;
-    }
-
-    .footer-links a:hover {
-        opacity: 0.8;
-    }
-
-    @media (max-width: 768px) {
-        .modern-footer {
-            margin-top: 40px;
-        }
-
-        .footer-copyright {
-            padding: 20px 0;
-        }
-
-        .copyright-content {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .footer-links {
-            justify-content: center;
-        }
-    }
-</style>
-
-<footer class="modern-footer">
-    <div class="footer-copyright">
-        <div class="container">
-            <div class="copyright-content">
-                <p class="copyright-text">
-                    <a href="/">Alijahon.uz</a> © 2026 Barcha huquqlar himoyalangan
-                </p>
-                <div class="footer-links">
-                    <a href="/">Bosh sahifa</a>
-                    <a href="/category">Do'kon</a>
-                    <a href="#">Aloqa</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap core JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src=" {% static 'apps/bootstrap.bundle.min.js' %} "></script>
-
-<!-- Custom scripts for all pages-->
-<script src=" {% static 'apps/custom.js' %} "></script>
-<!-- Contact form JavaScript -->
-<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<script src=" {% static 'apps/jqBootstrapValidation.js' %} "></script>
-<script src=" {% static 'apps/contact_me.js' %} "></script>
-<!-- Owl Carousel -->
-<script src=" {% static 'apps/owl.carousel.js' %} "></script>
-
-
-<script defer=""
-        src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
-        integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
-        data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;72b499923c304ca590d917e3955e9593&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
-        crossorigin="anonymous"></script>
-
-<style>html, :root, .aiinhbfoop.light, :host([class=light]) {
-    --aiinhbfoop-main-color: 0, 102, 255;
-}
-
-.aiinhbfoop.dark, :host([class=dark]) {
-    --aiinhbfoop-main-color: 0, 102, 255;
-}</style>
-</body>
-<div data-v-a6bcf793="" class="aiinhbfoop light" nocolor=""><!----><!----><!----><!----></div>
-</html>
+    </body>
+    </html>
+{% endblock %}

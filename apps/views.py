@@ -12,108 +12,113 @@ from apps.models import User, Product, Category
 
 
 class AlijahonHomeView(TemplateView):
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['pro_data'] = Product.objects.all()
+        data['cate_data'] = Category.objects.all()
+        return data
+
     template_name = 'home.html'
+
 
 class ShopView(TemplateView):
     template_name = 'shop.html'
 
+
 class AccountView(TemplateView):
     template_name = 'acc.html'
+
 
 class AdminMarketView(TemplateView):
     template_name = 'market.html'
 
+
 class SorovTemplateView(TemplateView):
     template_name = 'sorov.html'
+
 
 class HavolaTemplateView(TemplateView):
     template_name = 'havolalar.html'
 
+
 class StatistikaTemplateView(TemplateView):
     template_name = 'statistika.html'
+
 
 class KonkursTemplateView(TemplateView):
     template_name = 'konkurs.html'
 
+
 class PayTemplateView(TemplateView):
     template_name = 'pay.html'
+
 
 class ReferalTemplateView(TemplateView):
     template_name = 'referal.html'
 
+
 class SettingsTemplateView(TemplateView):
     template_name = 'sozlamalar.html'
 
-class RegisterView(View):
-    def get(self, request):
-        return render(request, 'home.html')
 
-    def post(self, request):
-        first_name = request.POST.get('first_name')
-        phone = request.POST.get('phone')
-        password = request.POST.get('password')
-        cnf_password = request.POST.get('cnf_password')
+# class RegisterView(View):
+#     def get(self, request):
+#         return render(request, 'home.html')
+#
+#     def post(self, request):
+#         first_name = request.POST.get('first_name')
+#         phone = request.POST.get('phone')
+#         password = request.POST.get('password')
+#         cnf_password = request.POST.get('cnf_password')
+#
+#         if password != cnf_password:
+#             messages.error(request, 'Password mos kelmadi')
+#             return render(request, 'home.html')
+#
+#         if User.objects.filter(phone=phone).exists():  # phone_number → phone
+#             messages.error(request, "Bu telefon raqam allaqachon ro'yxatdan o'tgan")
+#             return render(request, 'home.html')
+#
+#         user = User(first_name=first_name, phone=phone)  # phone_number → phone
+#         user.password = make_password(password)
+#         user.save()
+#         login(request, user)
+#         return redirect('home')
+#
+#
+# class LoginView(View):
+#     def get(self, request):
+#         return render(request, 'home.html')
+#
+#     def post(self, request):
+#         phone_number = request.POST.get('phone')
+#         password = request.POST.get('password')
+#         queryset = User.objects.filter(phone=phone_number)
+#         if queryset.exists():
+#             user = queryset.first()
+#             if user.check_password(password):
+#                 login(request, user)
+#                 return redirect('home')
+#         messages.error(request, "Telefon yoki parol noto'g'ri")
+#         return render(request, 'home.html')
 
-        if password != cnf_password:
-            messages.error(request, 'Password mos kelmadi')
-            return render(request, 'home.html')
 
-        if User.objects.filter(phone=phone).exists():  # phone_number → phone
-            messages.error(request, "Bu telefon raqam allaqachon ro'yxatdan o'tgan")
-            return render(request, 'home.html')
-
-        user = User(first_name=first_name, phone=phone)  # phone_number → phone
-        user.password = make_password(password)
-        user.save()
-        login(request, user)
-        return redirect('home')
-
-class LoginView(View):
-    def get(self, request):
-        return render(request, 'home.html')
-
-    def post(self, request):
-        phone_number = request.POST.get('phone')
-        password = request.POST.get('password')
-        queryset  = User.objects.filter(phone=phone_number)
-        if queryset.exists():
-            user = queryset.first()
-            if user.check_password(password):
-                login(request, user)
-                return redirect('home')
-        messages.error(request , "Telefon yoki parol noto'g'ri")
-        return render(request, 'home.html')
-
-
-class AllCategoriesView(ListView):
-    template_name = 'base/base_shop.html'
-    context_object_name = 'products'
-
-    def get_queryset(self):
-        return Product.objects.prefetch_related('images').all()
+class CategoryProductsView(TemplateView):
+    template_name = 'shop.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['new_products'] = Product.objects.prefetch_related('images').order_by('-created_at')[:20]
-        context['best_seller_products'] = Product.objects.prefetch_related('images').order_by('-order_count')[:16]
-        return context
+        data = super().get_context_data(**kwargs)
+        cate_it = self.kwargs.get('pk')
+        if cate_it:
+            data['pro_data'] = Product.objects.filter(category_id=cate_it)
+            data['cate_name'] = Category.objects.filter(id=cate_it).first()
 
-class CategoryProductsView(ListView):
-    template_name = 'base/base_shop.html'
-    context_object_name = 'products'
+        else:
+            data['pro_data'] = Product.objects.all()
+        data['cate_date'] = Category.objects.all()
+        return data
 
-    def get_queryset(self):
-        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        return Product.objects.filter(category=self.category).prefetch_related('images')
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['new_products'] = Product.objects.prefetch_related('images').order_by('-created_at')[:20]
-        context['best_seller_products'] = Product.objects.prefetch_related('images').order_by('-order_count')[:16]
-        context['active_category'] = self.category
-        return context
 
-class LoginTemplateView(LoginView):
-    template_name = 'login.html'
-    success_url = '/'
+def AllCategory(request):
+    cate = Category.objects.all()
+    return render(request, 'base/base.html', {'cate': cate})

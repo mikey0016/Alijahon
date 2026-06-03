@@ -1,7 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block body %}
-    <div class="modal fade login-modal-main show" id="login" style="padding-right: 8px; display: none;" aria-modal="true">
+    <div class="modal fade login-modal-main show" id="login" style="padding-right: 8px; display: none;"
+         aria-modal="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -13,14 +14,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <button type="button" class="close close-top-right position-absolute" data-dismiss="modal"
+                                <button type="button" class="close close-top-right position-absolute"
+                                        data-dismiss="modal"
                                         aria-label="Close">
                                     <span aria-hidden="true"><i class="icofont-close-line"></i></span>
                                     <span class="sr-only">Close</span>
                                 </button>
                                 <ul class="mt-4 mr-4 nav nav-tabs-login float-right position-absolute" role="tablist">
                                     <li>
-                                        <a class="nav-link-login active" data-toggle="tab" href="#login-form" role="tab"><i
+                                        <a class="nav-link-login active" data-toggle="tab" href="#login-form"
+                                           role="tab"><i
                                                 class="icofont-ui-lock"></i> Login</a>
                                     </li>
                                     <li>
@@ -52,7 +55,8 @@
                                                     </button>
                                                 </fieldset>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck1">
                                                     <label class="custom-control-label" for="customCheck1">
                                                         Eslab qolish
                                                     </label>
@@ -86,7 +90,8 @@
                                                     </button>
                                                 </fieldset>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           id="customCheck2">
                                                     <label class="custom-control-label" for="customCheck2">
                                                         <a href="#">Barcha shartlar</a>ga roziman
                                                     </label>
@@ -126,12 +131,14 @@
                          style="width: 1320px; left: 0px; display: block; transition: 800ms; transform: translate3d(-330px, 0px, 0px);">
                         <div class="owl-item" style="width: 330px;">
                             <div class="item banner-item">
-                                <img class="img-fluid w-100 banner-image" src="/media/banners/slider2.png" alt="Banner 1">
+                                <img class="img-fluid w-100 banner-image" src="/media/banners/slider2.png"
+                                     alt="Banner 1">
                             </div>
                         </div>
                         <div class="owl-item" style="width: 330px;">
                             <div class="item banner-item">
-                                <img class="img-fluid w-100 banner-image" src="/media/banners/slider1.png" alt="Banner 2">
+                                <img class="img-fluid w-100 banner-image" src="/media/banners/slider1.png"
+                                     alt="Banner 2">
                             </div>
                         </div>
                     </div>
@@ -152,185 +159,24 @@
     <section class="categories-section py-4">
         <div class="container">
             <div class="row g-3">
+                {% for date in cate_data %}
 
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/uy-uchun" class="category-card">
-                        <div class="category-image-wrapper">
+                    <div class="col-4 col-md-4 col-lg-3">
+                        <a href="{% url 'category' date.id %}" class="category-card">
+                            <div class="category-image-wrapper">
 
-                            <img class="category-image"
-                                 src="/media/category_images/7AA93102-81A6-41E5-9DDA-9CA2C6427E3B.png"
-                                 alt="Uy ruzg'or uchun maxsulotlar">
+                                <img class="category-image"
+                                     src="{{ date.photo.url }}"
+                                     alt="Uy ruzg'or uchun maxsulotlar">
 
-                        </div>
-                        <h6 class="category-title">Uy ruzg'or uchun maxsulotlar</h6>
-                    </a>
-                </div>
+                            </div>
+                            <h6 class="category-title">{{ date.title }}</h6>
+                        </a>
 
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/bolalar-uchun" class="category-card">
-                        <div class="category-image-wrapper">
+                    </div>
 
-                            <img class="category-image"
-                                 src="/media/category_images/9FAD31AD-312A-44A0-9AC3-247DA89DE70E.png"
-                                 alt="Bolalar uchun maxsulotlar">
+                {% endfor %}
 
-                        </div>
-                        <h6 class="category-title">Bolalar uchun maxsulotlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/sovga" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_5899.jpeg" alt="Sovg'alar">
-
-                        </div>
-                        <h6 class="category-title">Sovg'alar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/ayollar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image"
-                                 src="/media/category_images/DD1F5E6F-C0C2-46AB-B37A-4EE53C319728.png"
-                                 alt="Ayollar uchun maxsulotlar">
-
-                        </div>
-                        <h6 class="category-title">Ayollar uchun maxsulotlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/davolovchi-mahsulotlar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image"
-                                 src="/media/category_images/A2ABC07B-AE08-4D84-B8DA-C21DA27DFCBC.jpeg"
-                                 alt="Davolovchi mahsulotlar">
-
-                        </div>
-                        <h6 class="category-title">Davolovchi mahsulotlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/erkaklar-uchun" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_5903.jpeg"
-                                 alt="Erkaklar uchun maxsulotlar">
-
-                        </div>
-                        <h6 class="category-title">Erkaklar uchun maxsulotlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/fitnes" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image"
-                                 src="/media/category_images/6F1333A3-9765-4216-AE0A-A576B81DB510.png"
-                                 alt="Fitnes trenajorlar">
-
-                        </div>
-                        <h6 class="category-title">Fitnes trenajorlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/davolovchi-mazlar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image"
-                                 src="/media/category_images/1561E941-0F91-4C87-BCAA-49DD49C48E0B.png"
-                                 alt="Davolovchi mazlar">
-
-                        </div>
-                        <h6 class="category-title">Davolovchi mazlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/moshina-uchun" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image"
-                                 src="/media/category_images/2233F793-0315-4552-ACB8-C7522FDDEC29.png" alt="Moshina uchun">
-
-                        </div>
-                        <h6 class="category-title">Moshina uchun</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/kitoblar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_5800.jpeg" alt="Kitoblar">
-
-                        </div>
-                        <h6 class="category-title">Kitoblar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/aqlli-soatlar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_5900_nK6Sxod.jpeg" alt="soatlar">
-
-                        </div>
-                        <h6 class="category-title">soatlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/atir" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_5901.jpeg" alt="Atirlar">
-
-                        </div>
-                        <h6 class="category-title">Atirlar</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/yangi-yel-maxsulotlari" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src=" {% static 'apps/cart.png' %} " alt="Yangi yil  maxsulotlari">
-
-                        </div>
-                        <h6 class="category-title">Yangi yil maxsulotlari</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/eliktironika" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_1699.webp" alt="Elektironika">
-
-                        </div>
-                        <h6 class="category-title">Elektironika</h6>
-                    </a>
-                </div>
-
-                <div class="col-4 col-md-4 col-lg-3">
-                    <a href="/category/kozoynaklar" class="category-card">
-                        <div class="category-image-wrapper">
-
-                            <img class="category-image" src="/media/category_images/IMG_6866.jpeg" alt="Kozoynaklar">
-
-                        </div>
-                        <h6 class="category-title">Kozoynaklar</h6>
-                    </a>
-                </div>
 
             </div>
         </div>
@@ -372,7 +218,8 @@
                     <div class="product-card">
                         <a href="/product-detail/jonli-nasos" class="product-image-link">
                             <div class="product-image-wrapper">
-                                <img class="product-image" src="media/products/2025/10/19/IMG_3446.webp" alt="Jonli nasos"
+                                <img class="product-image" src="media/products/2025/10/19/IMG_3446.webp"
+                                     alt="Jonli nasos"
                                      loading="lazy">
                             </div>
                         </a>
@@ -506,7 +353,8 @@
                     <div class="product-card">
                         <a href="/product-detail/feramon-atir" class="product-image-link">
                             <div class="product-image-wrapper">
-                                <img class="product-image" src="media/products/2022/10/01/IMG_4771.webp" alt="FERAMON ATIR"
+                                <img class="product-image" src="media/products/2022/10/01/IMG_4771.webp"
+                                     alt="FERAMON ATIR"
                                      loading="lazy">
                             </div>
                         </a>
@@ -525,7 +373,8 @@
                     <div class="product-card">
                         <a href="/product-detail/soatli-uzuk" class="product-image-link">
                             <div class="product-image-wrapper">
-                                <img class="product-image" src="media/products/2025/11/19/IMG_4127.webp" alt="Soatli uzuk"
+                                <img class="product-image" src="media/products/2025/11/19/IMG_4127.webp"
+                                     alt="Soatli uzuk"
                                      loading="lazy">
                             </div>
                         </a>
@@ -838,7 +687,8 @@
                         <div class="owl-item" style="width: 310px;">
                             <div class="item">
                                 <div class="product-card">
-                                    <a href="/product-detail/bolalar-uchun-mujizaviy-sharcha" class="product-image-link">
+                                    <a href="/product-detail/bolalar-uchun-mujizaviy-sharcha"
+                                       class="product-image-link">
                                         <div class="product-image-wrapper">
                                             <img class="product-image" src="media/products/2026/04/26/IMG_7040.jpeg"
                                                  alt="Bolalar uchun mujizaviy sharcha" loading="lazy">

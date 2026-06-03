@@ -7,19 +7,18 @@ from django.db.models import CharField, DecimalField, Model, CASCADE, ForeignKey
 
 class CustomUserManager(UserManager):
 
-    def _create_user_object(self,  phone, password, **extra_fields):
+    def _create_user_object(self, phone, password, **extra_fields):
         if not phone:
             raise ValueError("The given phone must be set")
-        phone = self.normalize_phone(phone)
         user = self.model(phone=phone, **extra_fields)
         user.password = make_password(password)
         return user
 
-    def _create_user(self,phone, password, **extra_fields):
+    def _create_user(self, phone, password, **extra_fields):
         """
         Create and save a user with the given  phone, and password.
         """
-        user = self._create_user_object( phone, password, **extra_fields)
+        user = self._create_user_object(phone, password, **extra_fields)
         user.save(using=self._db)
         return user
 
@@ -54,8 +53,7 @@ class User(AbstractUser):
 
 class Category(Model):
     title = CharField(max_length=255)
-    logo = CharField(max_length=255)
-    slug = SlugField(max_length=255)
+    photo = ImageField(upload_to='products/')
 
 
 class Product(Model):
@@ -63,9 +61,8 @@ class Product(Model):
     price = DecimalField(max_digits=10, decimal_places=0)
     category = ForeignKey('apps.Category', on_delete=CASCADE, related_name='products')
     description = TextField()
-    order_count  = IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = SlugField(max_length=255  , unique=True)
+    image = ImageField(upload_to='products/')
 
 
 class Order(Model):
@@ -76,6 +73,7 @@ class Order(Model):
     user = ForeignKey('apps.User', on_delete=CASCADE, related_name='user_orders')
     created_at = DateTimeField(auto_now_add=True)
 
-class Image(Model):
-    product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='images')
-    product_image = ImageField(upload_to='products/')
+
+# class Image(Model):
+#     product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='images')
+#     product_image = ImageField(upload_to='products/')

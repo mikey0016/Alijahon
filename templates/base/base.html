@@ -945,7 +945,38 @@
         }
     }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const regionSelect = document.getElementById('id_region');
+        const districtSelect = document.getElementById('id_district');
+        const currentCity = "";
 
+        regionSelect.addEventListener('change', function () {
+            const regionId = this.value;
+            districtSelect.innerHTML = '<option value="">Yuklanmoqda...</option>';
+
+            if (!regionId) {
+                districtSelect.innerHTML = '<option value="">Tumanni tanlang</option>';
+                return;
+            }
+
+            fetch(`/get-districts/${regionId}/`)
+                .then(res => res.json())
+                .then(data => {
+                    districtSelect.innerHTML = '<option value="">Tumanni tanlang</option>';
+                    data.districts.forEach(function (d) {
+                        const opt = document.createElement('option');
+                        opt.value = d.name;
+                        opt.textContent = d.name;
+                        districtSelect.appendChild(opt);
+                    });
+                })
+                .catch(() => {
+                    districtSelect.innerHTML = '<option value="">Xatolik yuz berdi</option>';
+                });
+        });
+    });
+</script>
 
 <div class="modern-header">
     <nav class="navbar navbar-expand-lg navbar-light modern-navbar">
