@@ -19,7 +19,7 @@ urlpatterns = [
     path('pay/', PayTemplateView.as_view(), name='pay'),
     path('referal/', ReferalTemplateView.as_view(), name='referal'),
     path('settings/', SettingsTemplateView.as_view(), name='settings'),
-    # path('login/', LoginTemplateView.as_view(), name='login'),
+    path('auth/', AuthViewList.as_view(), name='auth'),
 ]
 
 if settings.DEBUG:

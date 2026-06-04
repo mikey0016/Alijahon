@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 from django.views import View
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 from apps.models import User, Product, Category
 
@@ -122,3 +124,48 @@ class CategoryProductsView(TemplateView):
 def AllCategory(request):
     cate = Category.objects.all()
     return render(request, 'base/base.html', {'cate': cate})
+
+
+class AuthViewList(View):
+    def post(self, request, **kwargs):
+        action = request.POST.get('action')
+
+        if action == 'register':
+            phone_number = request.POST.get('phone_number')
+            password = request.POST.get('password')
+            conf_password = request.POST.get('conf_password')
+
+            user_data = User.objects.filter(phone_number=phone_number).first()
+            if user_data:
+                messages.error(request, "Bundey nomer allaqachon mavjud")
+                return redirect('home')
+
+            if password != conf_password:
+                messages.error(request, "parol bir  biriga mos kelmadi")
+                return redirect('home')
+
+            User.objects.create_user(phone_number=phone_number, password=password)
+            messages.success(request, "Muffaqiyatli royxatdan otdingiz")
+            return redirect('home')
+        elif action == 'login':
+            phone_number = request.POST.get('phone_number')
+            password = request.POST.get('password')
+            user_data = User.objects.filter(phone_number=phone_number).first()
+            if not user_data:
+                messages.error(request, "Bundey nomer mavjud emas royxatdan oting")
+                return redirect('home')
+
+            if not check_password(password, user_data.password):
+                messages.error(request, "Parol xato kiritildi")
+                return redirect('home')
+
+            messages.success(request, "Hush kelibsiz")
+            login(request, user_data)
+            return redirect('account')
+
+
+
+def logout(request):
+    messages.success(request, 'Logged Out')
+    logout(request)
+    return redirect('home.html')

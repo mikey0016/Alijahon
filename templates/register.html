@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="col-md-12">
+        <div class="modal-body">
+            <div class="login-modal">
+                <div class="row">
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="login-modal-left p-4 text-center pl-5">
+                            <img src="{% static 'apps/alijahon.png' %}" alt="Alijahon Logo" style="width: 300px;">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <button type="button" class="close close-top-right position-absolute" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="icofont-close-line"></i></span>
+                            <span class="sr-only">Close</span>
+                        </button>
+
+                        <ul class="mt-4 mr-4 nav nav-tabs-login float-right position-absolute" role="tablist">
+                            <li>
+                                <a class="nav-link-login" data-toggle="tab" href="#login-form" role="tab"><i class="icofont-ui-lock"></i> Login</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-login active" data-toggle="tab" href="#register" role="tab"><i class="icofont icofont-pencil"></i> Ro'yxatdan o'tish</a>
+                            </li>
+                        </ul>
+
+                        <div class="login-modal-right p-4">
+                            <div class="tab-content">
+
+                                <div class="tab-pane active" id="register" role="tabpanel">
+                                    <form id="register-form" action="{% url 'register' %}" method="post">
+                                        {% csrf_token %}
+
+                                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                                        <input type="hidden" name="parent" value="">
+
+                                        <h5 class="heading-design-h5 text-dark">Register</h5>
+
+                                        {% if form.errors and request.POST.conf_password %}
+                                            <div class="text-danger small mb-2">
+                                                {% for field, errors in form.errors.items %}
+                                                    {% for error in errors %}
+                                                        <p>{{ error }}</p>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+
+                                        <fieldset class="form-group mt-4">
+                                            <label for="phone-mask-two">Telefon</label>
+                                            <input type="text" id="phone-mask-two" name="phone_number" class="form-control" placeholder="+998(99) 999-97-87" value="{{ request.POST.phone_number|default:'' }}" required>
+                                        </fieldset>
+
+                                        <fieldset class="form-group">
+                                            <label>Parol</label>
+                                            <input type="password" name="password" class="form-control" placeholder="******" required>
+                                        </fieldset>
+
+                                        <fieldset class="form-group">
+                                            <label>Parolni takrorlash</label>
+                                            <input type="password" name="conf_password" class="form-control" placeholder="***" required>
+                                        </fieldset>
+
+                                        <fieldset class="form-group">
+                                            <button type="submit" id="register-submit-btn" class="btn btn-lg btn-primary btn-block">
+                                                Yangi akkaunt ochish
+                                            </button>
+                                        </fieldset>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2" required>
+                                            <label class="custom-control-label" for="customCheck2">
+                                                <a href="#">Barcha shartlar</a>ga roziman
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane" id="login-form" role="tabpanel">
+                                    <form action="{% url 'login' %}" method="post">
+                                        {% csrf_token %}
+                                        <h5 class="heading-design-h5 text-dark">Login</h5>
+                                        <fieldset class="form-group mt-4">
+                                            <label for="phone-mask">Telefon</label>
+                                            <input type="text" id="phone-mask" class="form-control" name="username" placeholder="Telefon raqam" required>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Parol</label>
+                                            <input type="password" class="form-control" name="password" placeholder="****" required>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                                Kirish
+                                            </button>
+                                        </fieldset>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember_me">
+                                            <label class="custom-control-label" for="customCheck1">
+                                                Eslab qolish
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

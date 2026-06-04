@@ -1,29 +1,93 @@
-{% extends 'base/login_base.html' %}
+{% extends 'base/base.html' %}
+{% load static %}
 
-{% block login %}
-    <div class="tab-pane active" id="login-form" role="tabpanel">
-        <form action="/login" method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="yxFPqRfKGL2y76rUHvFXhKsqr5sCzZ8ZiD0EtXQ7asiZySa4LSJh3zQBbAduE8Nc">
-            <h5 class="heading-design-h5 text-dark">Login</h5>
-            <fieldset class="form-group mt-4">
-                <label>Telefon</label>
-                <input type="text" id="phone-mask" class="form-control" name="phone_number" placeholder="Telefon raqam">
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Parol</label>
-                <input type="password" class="form-control" name="password" placeholder="****">
-            </fieldset>
-            <fieldset class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">
-                    Kirish
-                </button>
-            </fieldset>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">
-                    Eslab qolish
-                </label>
+{% block body %}
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="login-modal">
+                <div class="row">
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="login-modal-left p-4 text-center pl-5">
+                            <img src="/static/apps/img/alijahon.png" alt="..." style="width: 300px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="button" class="close close-top-right position-absolute" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="icofont-close-line"></i></span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <ul class="mt-4 mr-4 nav nav-tabs-login float-right position-absolute" role="tablist">
+                            <li>
+                                <a class="nav-link-login active" data-toggle="tab" href="#login-form" role="tab" aria-selected="true"><i class="icofont-ui-lock"></i> Login</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-login" data-toggle="tab" href="#register" role="tab" aria-selected="false"><i class="icofont icofont-pencil"></i> Ro'yxatdan o'tish</a>
+                            </li>
+                        </ul>
+                        <div class="login-modal-right p-4">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="login-form" role="tabpanel">
+                                    <form action="/login" method="post">
+                                        <input type="hidden" name="csrfmiddlewaretoken" value="VLsF5dCCxPGoRkZQnJCqvWgFnOXxQZMw59TcS4jhlwkLsZ4UEKRT6oYUzYuVliQZ">
+                                        <h5 class="heading-design-h5 text-dark">Login</h5>
+                                        <fieldset class="form-group mt-4">
+                                            <label>Telefon</label>
+                                            <input type="text" id="phone-mask" class="form-control" name="phone_number" placeholder="Telefon raqam">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Parol</label>
+                                            <input type="password" class="form-control" name="password" placeholder="****">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                                Kirish
+                                            </button>
+                                        </fieldset>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">
+                                                Eslab qolish
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane" id="register" role="tabpanel">
+                                    <form action="/register" method="post">
+                                        <input type="hidden" name="csrfmiddlewaretoken" value="VLsF5dCCxPGoRkZQnJCqvWgFnOXxQZMw59TcS4jhlwkLsZ4UEKRT6oYUzYuVliQZ">
+                                        <h5 class="heading-design-h5 text-dark">Register</h5>
+                                        <fieldset class="form-group mt-4">
+                                            <label>Telefon</label>
+                                            <input type="text" id="phone-mask-two" name="phone_number" class="form-control" placeholder="Telefon raqam">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Parol</label>
+                                            <input type="password" name="password" class="form-control" placeholder="***">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Parolni takrorlash</label>
+                                            <input type="password" name="conf_password" class="form-control" placeholder="***">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                                Yangi akkaunt ochish
+                                            </button>
+                                        </fieldset>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2">
+                                                <a href="#">Barcha shartlar</a>ga roziman
+                                            </label>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 {% endblock %}

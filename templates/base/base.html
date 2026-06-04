@@ -1,600 +1,33 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>body {
+        transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+    }
+    </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
         Internet do'kon O'zbekiston bo'ylab bepul yetqazib berish - alijahon.uz
     </title>
-    <!-- Favicon Icon -->
-    <style type="text/css">:root, :host {
-        --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
-        --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
-        --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
-        --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
-        --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
-        --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
-        --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
-        --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
-    }
+    <link rel="icon" type="image/png" href="{% static 'apps/fav-icon.png' %}">
+    <link href="{% static 'apps/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'apps/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'apps/icofont.min.css' %} " rel="stylesheet">
+    <link href="{% static 'apps/style.css' %} " rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'apps/owl.carousel.css' %} ">
+    <link rel="stylesheet" href="{% static 'apps/owl.theme.css' %} ">
+    <link rel="manifest" href="https://alijahon.uz/static/apps/json/manifest.json">
 
-    svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
-        overflow: visible;
-        box-sizing: content-box;
-    }
-
-    .svg-inline--fa {
-        display: inline-block;
-        height: 1em;
-        overflow: visible;
-        vertical-align: -0.125em;
-    }
-
-    .svg-inline--fa.fa-2xs {
-        vertical-align: 0.1em;
-    }
-
-    .svg-inline--fa.fa-xs {
-        vertical-align: 0em;
-    }
-
-    .svg-inline--fa.fa-sm {
-        vertical-align: -0.0714285705em;
-    }
-
-    .svg-inline--fa.fa-lg {
-        vertical-align: -0.2em;
-    }
-
-    .svg-inline--fa.fa-xl {
-        vertical-align: -0.25em;
-    }
-
-    .svg-inline--fa.fa-2xl {
-        vertical-align: -0.3125em;
-    }
-
-    .svg-inline--fa.fa-pull-left {
-        margin-right: var(--fa-pull-margin, 0.3em);
-        width: auto;
-    }
-
-    .svg-inline--fa.fa-pull-right {
-        margin-left: var(--fa-pull-margin, 0.3em);
-        width: auto;
-    }
-
-    .svg-inline--fa.fa-li {
-        width: var(--fa-li-width, 2em);
-        top: 0.25em;
-    }
-
-    .svg-inline--fa.fa-fw {
-        width: var(--fa-fw-width, 1.25em);
-    }
-
-    .fa-layers svg.svg-inline--fa {
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-    .fa-layers-counter, .fa-layers-text {
-        display: inline-block;
-        position: absolute;
-        text-align: center;
-    }
-
-    .fa-layers {
-        display: inline-block;
-        height: 1em;
-        position: relative;
-        text-align: center;
-        vertical-align: -0.125em;
-        width: 1em;
-    }
-
-    .fa-layers svg.svg-inline--fa {
-        transform-origin: center center;
-    }
-
-    .fa-layers-text {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        transform-origin: center center;
-    }
-
-    .fa-layers-counter {
-        background-color: var(--fa-counter-background-color, #ff253a);
-        border-radius: var(--fa-counter-border-radius, 1em);
-        box-sizing: border-box;
-        color: var(--fa-inverse, #fff);
-        line-height: var(--fa-counter-line-height, 1);
-        max-width: var(--fa-counter-max-width, 5em);
-        min-width: var(--fa-counter-min-width, 1.5em);
-        overflow: hidden;
-        padding: var(--fa-counter-padding, 0.25em 0.5em);
-        right: var(--fa-right, 0);
-        text-overflow: ellipsis;
-        top: var(--fa-top, 0);
-        transform: scale(var(--fa-counter-scale, 0.25));
-        transform-origin: top right;
-    }
-
-    .fa-layers-bottom-right {
-        bottom: var(--fa-bottom, 0);
-        right: var(--fa-right, 0);
-        top: auto;
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: bottom right;
-    }
-
-    .fa-layers-bottom-left {
-        bottom: var(--fa-bottom, 0);
-        left: var(--fa-left, 0);
-        right: auto;
-        top: auto;
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: bottom left;
-    }
-
-    .fa-layers-top-right {
-        top: var(--fa-top, 0);
-        right: var(--fa-right, 0);
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: top right;
-    }
-
-    .fa-layers-top-left {
-        left: var(--fa-left, 0);
-        right: auto;
-        top: var(--fa-top, 0);
-        transform: scale(var(--fa-layers-scale, 0.25));
-        transform-origin: top left;
-    }
-
-    .fa-1x {
-        font-size: 1em;
-    }
-
-    .fa-2x {
-        font-size: 2em;
-    }
-
-    .fa-3x {
-        font-size: 3em;
-    }
-
-    .fa-4x {
-        font-size: 4em;
-    }
-
-    .fa-5x {
-        font-size: 5em;
-    }
-
-    .fa-6x {
-        font-size: 6em;
-    }
-
-    .fa-7x {
-        font-size: 7em;
-    }
-
-    .fa-8x {
-        font-size: 8em;
-    }
-
-    .fa-9x {
-        font-size: 9em;
-    }
-
-    .fa-10x {
-        font-size: 10em;
-    }
-
-    .fa-2xs {
-        font-size: 0.625em;
-        line-height: 0.1em;
-        vertical-align: 0.225em;
-    }
-
-    .fa-xs {
-        font-size: 0.75em;
-        line-height: 0.0833333337em;
-        vertical-align: 0.125em;
-    }
-
-    .fa-sm {
-        font-size: 0.875em;
-        line-height: 0.0714285718em;
-        vertical-align: 0.0535714295em;
-    }
-
-    .fa-lg {
-        font-size: 1.25em;
-        line-height: 0.05em;
-        vertical-align: -0.075em;
-    }
-
-    .fa-xl {
-        font-size: 1.5em;
-        line-height: 0.0416666682em;
-        vertical-align: -0.125em;
-    }
-
-    .fa-2xl {
-        font-size: 2em;
-        line-height: 0.03125em;
-        vertical-align: -0.1875em;
-    }
-
-    .fa-fw {
-        text-align: center;
-        width: 1.25em;
-    }
-
-    .fa-ul {
-        list-style-type: none;
-        margin-left: var(--fa-li-margin, 2.5em);
-        padding-left: 0;
-    }
-
-    .fa-ul > li {
-        position: relative;
-    }
-
-    .fa-li {
-        left: calc(-1 * var(--fa-li-width, 2em));
-        position: absolute;
-        text-align: center;
-        width: var(--fa-li-width, 2em);
-        line-height: inherit;
-    }
-
-    .fa-border {
-        border-color: var(--fa-border-color, #eee);
-        border-radius: var(--fa-border-radius, 0.1em);
-        border-style: var(--fa-border-style, solid);
-        border-width: var(--fa-border-width, 0.08em);
-        padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
-    }
-
-    .fa-pull-left {
-        float: left;
-        margin-right: var(--fa-pull-margin, 0.3em);
-    }
-
-    .fa-pull-right {
-        float: right;
-        margin-left: var(--fa-pull-margin, 0.3em);
-    }
-
-    .fa-beat {
-        animation-name: fa-beat;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, ease-in-out);
-    }
-
-    .fa-bounce {
-        animation-name: fa-bounce;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
-    }
-
-    .fa-fade {
-        animation-name: fa-fade;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-    }
-
-    .fa-beat-fade {
-        animation-name: fa-beat-fade;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-    }
-
-    .fa-flip {
-        animation-name: fa-flip;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, ease-in-out);
-    }
-
-    .fa-shake {
-        animation-name: fa-shake;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, linear);
-    }
-
-    .fa-spin {
-        animation-name: fa-spin;
-        animation-delay: var(--fa-animation-delay, 0s);
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 2s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, linear);
-    }
-
-    .fa-spin-reverse {
-        --fa-animation-direction: reverse;
-    }
-
-    .fa-pulse,
-    .fa-spin-pulse {
-        animation-name: fa-spin;
-        animation-direction: var(--fa-animation-direction, normal);
-        animation-duration: var(--fa-animation-duration, 1s);
-        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-        animation-timing-function: var(--fa-animation-timing, steps(8));
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .fa-beat,
-        .fa-bounce,
-        .fa-fade,
-        .fa-beat-fade,
-        .fa-flip,
-        .fa-pulse,
-        .fa-shake,
-        .fa-spin,
-        .fa-spin-pulse {
-            animation-delay: -1ms;
-            animation-duration: 1ms;
-            animation-iteration-count: 1;
-            transition-delay: 0s;
-            transition-duration: 0s;
-        }
-    }
-
-    @keyframes fa-beat {
-        0%, 90% {
-            transform: scale(1);
-        }
-        45% {
-            transform: scale(var(--fa-beat-scale, 1.25));
-        }
-    }
-
-    @keyframes fa-bounce {
-        0% {
-            transform: scale(1, 1) translateY(0);
-        }
-        10% {
-            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-        }
-        30% {
-            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-        }
-        50% {
-            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-        }
-        57% {
-            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-        }
-        64% {
-            transform: scale(1, 1) translateY(0);
-        }
-        100% {
-            transform: scale(1, 1) translateY(0);
-        }
-    }
-
-    @keyframes fa-fade {
-        50% {
-            opacity: var(--fa-fade-opacity, 0.4);
-        }
-    }
-
-    @keyframes fa-beat-fade {
-        0%, 100% {
-            opacity: var(--fa-beat-fade-opacity, 0.4);
-            transform: scale(1);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(var(--fa-beat-fade-scale, 1.125));
-        }
-    }
-
-    @keyframes fa-flip {
-        50% {
-            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-        }
-    }
-
-    @keyframes fa-shake {
-        0% {
-            transform: rotate(-15deg);
-        }
-        4% {
-            transform: rotate(15deg);
-        }
-        8%, 24% {
-            transform: rotate(-18deg);
-        }
-        12%, 28% {
-            transform: rotate(18deg);
-        }
-        16% {
-            transform: rotate(-22deg);
-        }
-        20% {
-            transform: rotate(22deg);
-        }
-        32% {
-            transform: rotate(-12deg);
-        }
-        36% {
-            transform: rotate(12deg);
-        }
-        40%, 100% {
-            transform: rotate(0deg);
-        }
-    }
-
-    @keyframes fa-spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    .fa-rotate-90 {
-        transform: rotate(90deg);
-    }
-
-    .fa-rotate-180 {
-        transform: rotate(180deg);
-    }
-
-    .fa-rotate-270 {
-        transform: rotate(270deg);
-    }
-
-    .fa-flip-horizontal {
-        transform: scale(-1, 1);
-    }
-
-    .fa-flip-vertical {
-        transform: scale(1, -1);
-    }
-
-    .fa-flip-both,
-    .fa-flip-horizontal.fa-flip-vertical {
-        transform: scale(-1, -1);
-    }
-
-    .fa-rotate-by {
-        transform: rotate(var(--fa-rotate-angle, 0));
-    }
-
-    .fa-stack {
-        display: inline-block;
-        vertical-align: middle;
-        height: 2em;
-        position: relative;
-        width: 2.5em;
-    }
-
-    .fa-stack-1x,
-    .fa-stack-2x {
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: var(--fa-stack-z-index, auto);
-    }
-
-    .svg-inline--fa.fa-stack-1x {
-        height: 1em;
-        width: 1.25em;
-    }
-
-    .svg-inline--fa.fa-stack-2x {
-        height: 2em;
-        width: 2.5em;
-    }
-
-    .fa-inverse {
-        color: var(--fa-inverse, #fff);
-    }
-
-    .sr-only,
-    .fa-sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-
-    .sr-only-focusable:not(:focus),
-    .fa-sr-only-focusable:not(:focus) {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-
-    .svg-inline--fa .fa-primary {
-        fill: var(--fa-primary-color, currentColor);
-        opacity: var(--fa-primary-opacity, 1);
-    }
-
-    .svg-inline--fa .fa-secondary {
-        fill: var(--fa-secondary-color, currentColor);
-        opacity: var(--fa-secondary-opacity, 0.4);
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-primary {
-        opacity: var(--fa-secondary-opacity, 0.4);
-    }
-
-    .svg-inline--fa.fa-swap-opacity .fa-secondary {
-        opacity: var(--fa-primary-opacity, 1);
-    }
-
-    .svg-inline--fa mask .fa-primary,
-    .svg-inline--fa mask .fa-secondary {
-        fill: black;
-    }
-
-    .fad.fa-inverse,
-    .fa-duotone.fa-inverse {
-        color: var(--fa-inverse, #fff);
-    }</style>
-    <link rel="icon" type="image/png" href=" {% static 'apps/fav-icon.png' %} ">
-    <!-- Bootstrap core CSS -->
-    <link href=" {% static 'apps/bootstrap.min.css' %} " rel="stylesheet">
-    <!-- Font Awesome-->
-    <link href=" {% static 'apps/all.min.css' %} " rel="stylesheet">
-    <link href=" {% static 'apps/icofont.min.css' %} " rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href=" {% static 'apps/style.css' %} " rel="stylesheet">
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href=" {% static 'apps/owl.carousel.css' %} ">
-    <link rel="stylesheet" href=" {% static 'apps/owl.theme.css' %} ">
-    <link rel="manifest" href=" {% static 'apps/manifest.json' %} ">
-
-    <!-- Modern UI Styles -->
     <style>
         :root {
             --primary-color: #4f46e5;
@@ -705,25 +138,9 @@
         }
     </style>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(' {% static 'apps/js/sw.js' %} ')
-                .then(function (reg) {
-                    console.log("Service Worker ro'yxatdan o'tdi!", reg);
-                })
-                .catch(function (err) {
-                    console.log("Service Worker xatosi!", err);
-                });
-        }
-    </script>
 
+    <link rel="stylesheet" href="{% static 'apps/index_style.css' %}">
 
-    <link rel="stylesheet" href=" {% static 'apps/index_style.css' %} ">
-
-    <link rel="stylesheet"
-          href="chrome-extension://inhcgfpbfdjbjogdfjbclgolkmhnooop/aitopia/assets/b1787eab876d2c84860f82cc9bc36451.css">
-    <link rel="stylesheet"
-          href="chrome-extension://inhcgfpbfdjbjogdfjbclgolkmhnooop/aitopia/assets/86211712efab768f9d4be4adfecbebbe.css">
 </head>
 <body>
 
@@ -945,44 +362,12 @@
         }
     }
 </style>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const regionSelect = document.getElementById('id_region');
-        const districtSelect = document.getElementById('id_district');
-        const currentCity = "";
-
-        regionSelect.addEventListener('change', function () {
-            const regionId = this.value;
-            districtSelect.innerHTML = '<option value="">Yuklanmoqda...</option>';
-
-            if (!regionId) {
-                districtSelect.innerHTML = '<option value="">Tumanni tanlang</option>';
-                return;
-            }
-
-            fetch(`/get-districts/${regionId}/`)
-                .then(res => res.json())
-                .then(data => {
-                    districtSelect.innerHTML = '<option value="">Tumanni tanlang</option>';
-                    data.districts.forEach(function (d) {
-                        const opt = document.createElement('option');
-                        opt.value = d.name;
-                        opt.textContent = d.name;
-                        districtSelect.appendChild(opt);
-                    });
-                })
-                .catch(() => {
-                    districtSelect.innerHTML = '<option value="">Xatolik yuz berdi</option>';
-                });
-        });
-    });
-</script>
 
 <div class="modern-header">
     <nav class="navbar navbar-expand-lg navbar-light modern-navbar">
         <div class="container">
             <a class="navbar-brand navbar-brand-modern" href="{% url 'home' %}">
-                <img src=" {% static 'apps/alijahon.png' %} " alt="Alijahon.uz">
+                <img src="{% static 'apps/alijahon.png' %}" alt="{% url 'home' %}">
             </a>
 
             <button class="navbar-toggler navbar-toggler-modern" type="button" data-toggle="collapse"
@@ -998,78 +383,21 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link nav-link-modern dropdown-toggle" href="#" data-toggle="dropdown">
+                        <a class="nav-link nav-link-modern dropdown-toggle" href="https://alijahon.uz/#"
+                           data-toggle="dropdown">
                             <i class="icofont-list"></i> Kategoriyalar
                         </a>
                         <div class="dropdown-menu mega-dropdown-modern">
                             <div class="row">
                                 <div class="col-lg-2 col-md-4 col-sm-6">
                                     <div class="mega-list-modern">
+                                        {% for cate in cate_data %}
 
-                                        <a href="/category/uy-uchun">
-                                            Uy ruzg'or uchun maxsulotlar
-                                        </a>
+                                            <a href="{% url 'category' cate.id %}">
+                                                {{ cate.name }}
+                                            </a>
+                                        {% endfor %}
 
-                                        <a href="/category/bolalar-uchun">
-                                            Bolalar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/sovga">
-                                            Sovg'alar
-                                        </a>
-
-                                        <a href="/category/ayollar">
-                                            Ayollar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/davolovchi-mahsulotlar">
-                                            Davolovchi mahsulotlar
-                                        </a>
-
-                                        <a href="/category/erkaklar-uchun">
-                                            Erkaklar uchun maxsulotlar
-                                        </a>
-
-                                        <a href="/category/fitnes">
-                                            Fitnes trenajorlar
-                                        </a>
-
-                                        <a href="/category/davolovchi-mazlar">
-                                            Davolovchi mazlar
-                                        </a>
-
-                                        <a href="/category/moshina-uchun">
-                                            Moshina uchun
-                                        </a>
-
-                                        <a href="/category/kitoblar">
-                                            Kitoblar
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6">
-                                    <div class="mega-list-modern">
-
-                                        <a href="/category/aqlli-soatlar">
-                                            soatlar
-                                        </a>
-
-                                        <a href="/category/atir">
-                                            Atirlar
-                                        </a>
-
-                                        <a href="/category/yangi-yel-maxsulotlari">
-                                            Yangi yil maxsulotlari
-                                        </a>
-
-                                        <a href="/category/eliktironika">
-                                            Elektironika
-                                        </a>
-
-                                        <a href="/category/kozoynaklar">
-                                            Kozoynaklar
-                                        </a>
 
                                     </div>
                                 </div>
@@ -1103,9 +431,9 @@
                     </li>
                 </ul>
 
-                <form action="/search" method="POST" class="search-box-header" autocomplete="off">
+                <form action="https://alijahon.uz/search" method="POST" class="search-box-header" autocomplete="off">
                     <input type="hidden" name="csrfmiddlewaretoken"
-                           value="c0tHQlEnqouSrG2o5iTrZ60piEHbK7SlmoUeDcl2e58f2l7smj8UAyIEuOezfqWO">
+                           value="VaFB13OMsHQiwukPirUc0TNJXOdo1uprSfD4BgFPnbg64rmUv6l69FfaIhaw8HD8">
                     <input id="search-input" name="product" type="search" placeholder="Mahsulot qidirish...">
                     <button type="submit">
                         <i class="icofont-search"></i>
@@ -1113,12 +441,41 @@
                 </form>
 
                 <ul class="navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item dropdown profile-dropdown-nav">
+                            <a class="nav-link nav-link-modern dropdown-toggle"
+                               href="https://alijahon.uz/admin_page/market#" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{% static 'admin_market/nouser.png' %}" alt="" class="profile-pic-modern">
+                                <span class="ml-2"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown-modern"
+                                 style="display: none;">
 
-                    <li class="nav-item">
-                        <a href="{% url 'account' %}" data-target="#login" data-toggle="modal" class="nav-link nav-link-modern">
-                            <i class="icofont-ui-user"></i> Kirish
-                        </a>
-                    </li>
+
+                                <a class="dropdown-item dropdown-item-modern" href="{% url 'account' %}">
+                                    <i class="icofont-ui-user"></i>
+                                    <span>Mening kabinetim</span>
+                                </a>
+
+
+                                <div class="dropdown-divider" style="margin: 8px 0;"></div>
+
+{#                                <a class="dropdown-item dropdown-item-modern" href="{% url 'logout' %}">#}
+{#                                    <i class="icofont-logout"></i>#}
+{#                                    <span>Chiqish</span>#}
+{#                                </a>#}
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="#" data-target="#login" data-toggle="modal"
+                               class="nav-link nav-link-modern">
+                                <i class="icofont-ui-user"></i> Kirish
+                            </a>
+                        </li>
+                    {% endif %}
+
 
                 </ul>
             </div>
@@ -1126,49 +483,263 @@
     </nav>
 </div>
 
-    {% block body %}
+<div class="modal fade login-modal-main" id="login" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-modal">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex align-items-center">
+                            <div class="login-modal-left p-4 text-center pl-5">
+                                <img src=".{% static 'apps/alijahon.png' %}" alt="..." style="width: 300px;">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="close close-top-right position-absolute" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <ul class="mt-4 mr-4 nav nav-tabs-login float-right position-absolute" role="tablist">
+                                <li>
+                                    <a class="nav-link-login active" data-toggle="tab"
+                                       href="#login-form" role="tab"><i class="icofont-ui-lock"></i>
+                                        Login</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link-login" data-toggle="tab" href="#register"
+                                       role="tab"><i class="icofont icofont-pencil"></i> Ro'yxatdan o'tish</a>
+                                </li>
+                            </ul>
+                            <div class="login-modal-right p-4">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="login-form" role="tabpanel">
+                                        <form action="{% url 'auth' %}" method="post">
+                                            {% csrf_token %}
+                                            <h5 class="heading-design-h5 text-dark">Login</h5>
+                                            <fieldset class="form-group mt-4">
+                                                <label>Telefon</label>
+                                                <input type="text" id="phone-mask" class="form-control"
+                                                       name="phone_number" placeholder="Telefon raqam">
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Parol</label>
+                                                <input type="password" class="form-control" name="password"
+                                                       placeholder="****">
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <button type="submit" class="btn btn-lg btn-primary btn-block"
+                                                        name="action" value="login">
+                                                    Kirish
+                                                </button>
+                                            </fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">
+                                                    Eslab qolish
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="register" role="tabpanel">
+                                        <form action="{% url 'auth' %}" method="post">
+                                            {% csrf_token %}
+                                            <h5 class="heading-design-h5 text-dark">Register</h5>
+                                            <fieldset class="form-group mt-4">
+                                                <label>Telefon</label>
+                                                <input type="text" id="phone-mask-two" name="phone_number"
+                                                       class="form-control" placeholder="Telefon raqam">
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Parol</label>
+                                                <input type="password" name="password" class="form-control"
+                                                       placeholder="***">
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <label>Parolni takrorlash</label>
+                                                <input type="password" name="conf_password" class="form-control"
+                                                       placeholder="***">
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                                <button type="submit" class="btn btn-lg btn-primary btn-block"
+                                                        name="action" value="register">
+                                                    Yangi akkaunt ochish
+                                                </button>
+                                            </fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                {#                                                <label class="custom-control-label" for="customCheck2">#}
+                                                {#                                                    <a href="https://alijahon.uz/#">Barcha shartlar</a>ga roziman#}
+                                                {#                                                </label>#}
+                                            </div>
+                                        </form>
 
-    {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'apps/jquery.min.js' %}"></script>
+<script src="{% static 'apps/jquery.inputmask.bundle.js' %}"></script>
+<script>
+    $(document).ready(function () {
+
+        // Modal ochish
+        $('[data-toggle="modal"]').on('click', function (e) {
+            e.preventDefault();
+            var target = $(this).attr('data-target');
+            $(target).css('display', 'block').addClass('show');
+            $('body').addClass('modal-open');
+            $('<div class="modal-backdrop fade show"></div>').appendTo('body');
+        });
+
+        // Modal yopish
+        $(document).on('click', '[data-dismiss="modal"], .modal-backdrop', function () {
+            $('.modal').css('display', 'none').removeClass('show');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        });
+
+        // Tab almashtirish (Login / Register)
+        $(document).on('click', '[data-toggle="tab"]', function (e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+
+            // Barcha tab linklardan active olib tashlash
+            $(this).closest('[role="tablist"]').find('.nav-link-login').removeClass('active');
+            $(this).addClass('active');
+
+            // Barcha tab-pane larni yashirish
+            $(this).closest('.modal').find('.tab-pane').removeClass('active show');
+
+            // Kerakli tab ni ko'rsatish
+            $(this).closest('.modal').find(target).addClass('active show');
+        });
+
+    });
+</script>
+<script>
+    $('#phone-mask').inputmask({
+        "mask": "+\\9\\98(99) 999-99-99"
+    });
+    $('#phone-mask-two').inputmask({
+        "mask": "+\\9\\98(99) 999-99-99"
+    });
+</script>
+{% block body %}
+
+{% endblock %}
+
+<style>
+    .modern-footer {
+        background: white;
+        border-top: 1px solid #e2e8f0;
+        padding: 0;
+        margin-top: 60px;
+    }
+
+    .footer-copyright {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 24px 0;
+        color: white;
+    }
+
+    .copyright-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .copyright-text {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .copyright-text a {
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .copyright-text a:hover {
+        opacity: 0.8;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+        .modern-footer {
+            margin-top: 40px;
+        }
+
+        .footer-copyright {
+            padding: 20px 0;
+        }
+
+        .copyright-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-links {
+            justify-content: center;
+        }
+    }
+</style>
 
 <footer class="modern-footer">
     <div class="footer-copyright">
         <div class="container">
             <div class="copyright-content">
                 <p class="copyright-text">
-                    <a href="/">Alijahon.uz</a> © 2026 Barcha huquqlar himoyalangan
+                    <a href="https://alijahon.uz/">Alijahon.uz</a> © 2026 Barcha huquqlar himoyalangan
                 </p>
                 <div class="footer-links">
-                    <a href="{% url 'home' %}">Bosh sahifa</a>
-                    <a href="/category">Do'kon</a>
-                    <a href="#">Aloqa</a>
+                    <a href="https://alijahon.uz/">Bosh sahifa</a>
+                    <a href="https://alijahon.uz/category">Do'kon</a>
+                    <a href="https://alijahon.uz/#">Aloqa</a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src=" {% static 'apps/bootstrap.bundle.min.js' %} "></script>
 
-<!-- Custom scripts for all pages-->
-<script src=" {% static 'apps/custom.js' %} "></script>
-<!-- Contact form JavaScript -->
-<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<script src=" {% static 'apps/jqBootstrapValidation.js' %} "></script>
-<script src=" {% static 'apps/contact_me.js' %} "></script>
-<!-- Owl Carousel -->
-<script src=" {% static 'app/sowl.carousel.js' %}"></script>
+<script src="{% static 'apps/custom.js' %}"></script>
+<script src="{% static 'apps/jqBootstrapValidation.js' %}"></script>
+<script src="{% static 'apps/contact_me.js' %}"></script>
+<script src="{% static 'apps/owl.carousel.js' %}"></script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
+<script src="{% static 'apps/jquery.inputmask.bundle.js' %}"></script>
 <script>
     $(document).ready(function () {
-        // Phone mask initialization
         $('#phone-mask').inputmask({"mask": "+\\9\\98(99) 999-99-99"});
         $('#phone-mask1').inputmask({"mask": "+\\9\\98(99) 999-99-99"});
 
-        // Owl Carousel initialization
         $('.owl-carousel-category').owlCarousel({
             loop: false,
             margin: 15,
@@ -1185,14 +756,527 @@
 </script>
 
 
-<script defer=""
-        src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+<script defer="" src="{% static 'apps/v833ccba57c9e4d2798f2e76cebdd09a11778172276447' %}"
         integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
         data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;72b499923c304ca590d917e3955e9593&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
         crossorigin="anonymous"></script>
 
+<veepn-lock-screen>
+    <template shadowrootmode="open">
+        <style>html {
+            box-sizing: border-box;
+            text-size-adjust: 100%;
+            word-break: normal;
+            tab-size: 4
+        }
 
-}</style>
+        *, :before, :after {
+            background-repeat: no-repeat;
+            box-sizing: border-box
+        }
+
+        :before, :after {
+            text-decoration: inherit;
+            vertical-align: inherit
+        }
+
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        hr {
+            overflow: visible;
+            height: 0;
+            color: inherit;
+            border: 0;
+            border-top: 1px solid
+        }
+
+        details, main {
+            display: block
+        }
+
+        summary {
+            display: list-item
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        [hidden] {
+            display: none !important
+        }
+
+        abbr[title] {
+            border-bottom: none;
+            text-decoration: underline;
+            text-decoration: underline dotted
+        }
+
+        a {
+            background-color: transparent
+        }
+
+        a:active, a:hover {
+            outline-width: 0
+        }
+
+        code, kbd, pre, samp {
+            font-family: monospace
+        }
+
+        pre {
+            font-size: 1em
+        }
+
+        b, strong {
+            font-weight: bolder
+        }
+
+        sub, sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            border-color: inherit;
+            text-indent: 0
+        }
+
+        iframe {
+            border-style: none
+        }
+
+        input {
+            border-radius: 0
+        }
+
+        [type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            appearance: textfield;
+            outline-offset: -2px
+        }
+
+        [type=search]::-webkit-search-decoration {
+            appearance: none
+        }
+
+        textarea {
+            overflow: auto;
+            resize: vertical
+        }
+
+        button, input, optgroup, select, textarea {
+            font: inherit;
+            color: inherit
+        }
+
+        optgroup {
+            font-weight: 700
+        }
+
+        button {
+            overflow: visible
+        }
+
+        button, select {
+            text-transform: none
+        }
+
+        button, [type=button], [type=reset], [type=submit], [role=button] {
+            cursor: pointer
+        }
+
+        button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+            border-style: none;
+            padding: 0
+        }
+
+        button, html [type=button], [type=reset], [type=submit] {
+            appearance: auto
+        }
+
+        button, input, select, textarea {
+            background-color: transparent;
+            border-style: none
+        }
+
+        button:-moz-focusring, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+            outline: 1px dotted ButtonText
+        }
+
+        select {
+            appearance: none
+        }
+
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline-width: 0
+        }
+
+        select::-ms-expand {
+            display: none
+        }
+
+        select::-ms-value {
+            color: currentcolor
+        }
+
+        legend {
+            border: 0;
+            color: inherit;
+            display: table;
+            white-space: normal;
+            max-width: 100%
+        }
+
+        ::-webkit-file-upload-button {
+            appearance: auto;
+            color: inherit;
+            font: inherit
+        }
+
+        [disabled] {
+            cursor: default
+        }
+
+        img {
+            border-style: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        [aria-busy=true] {
+            cursor: progress
+        }
+
+        [aria-controls] {
+            cursor: pointer
+        }
+
+        [aria-disabled=true] {
+            cursor: default
+        }
+
+        ul, ol {
+            list-style-type: none
+        }
+
+        figure {
+            margin: 0
+        }
+
+        @keyframes slide-in {
+            0% {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .gradient-blue {
+            background: radial-gradient(106.41% 128.47% at 50.15% 128.47%, #23abff, #3066ff)
+        }
+
+        .gradient-green {
+            background: radial-gradient(92.26% 118.88% at 50.15% .13%, #00c3c3, #00aab3)
+        }
+
+        .gradient-purple {
+            background: radial-gradient(165.12% 115.56% at 50.15% .13%, #a15aff, #00a0eb)
+        }
+
+        .bg-blue {
+            background-color: #f2f5ff
+        }
+
+        .bg-purple {
+            background-color: #f7f0ff
+        }
+
+        .bg-green {
+            background-color: #ebffed
+        }
+
+        .lock-screen {
+            font-family: FigtreeVF, sans-serif;
+            letter-spacing: normal;
+            position: fixed;
+            z-index: 2147483638;
+            right: 24px;
+            bottom: 24px;
+            width: 327px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 32px #00000014;
+            animation: slide-in .3s ease-in-out forwards
+        }
+
+        .lock-screen__content {
+            position: relative;
+            padding: 24px 24px 64px
+        }
+
+        .lock-screen__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: .5
+        }
+
+        .lock-screen__label {
+            height: 26px;
+            width: fit-content;
+            border-radius: 50px;
+            background-color: #fff3;
+            padding-inline: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 12px;
+            line-height: 18px;
+            margin: -8px auto 16px
+        }
+
+        .lock-screen__title {
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 600;
+            margin-bottom: 8px
+        }
+
+        .lock-screen__description {
+            color: #f5f6f7;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px
+        }
+
+        .lock-screen__description b {
+            font-weight: 600
+        }
+
+        .lock-screen__card {
+            position: relative;
+            z-index: 1;
+            margin-top: -44px;
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 32px 20px 20px
+        }
+
+        .lock-screen__inner {
+            margin-bottom: 24px
+        }
+
+        .lock-screen__submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            height: 40px;
+            width: 100%;
+            border-radius: 12px;
+            padding-inline: 16px;
+            background-color: #f70;
+            color: #fff;
+            margin-bottom: 16px
+        }
+
+        .lock-screen__skip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            line-height: 20px;
+            color: #82829c;
+            margin-inline: auto
+        }
+
+        .price-card {
+            border: 1px solid #f2f2fc;
+            background: linear-gradient(254.14deg, #fafbff .04%, #f5f8ff 100.04%);
+            border-radius: 24px;
+            padding: 24px 28px
+        }
+
+        .price-card__label {
+            color: #4a5764;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px;
+            text-transform: uppercase;
+            margin-bottom: 16px
+        }
+
+        .price-card__price {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            column-gap: 2px;
+            margin-bottom: 12px
+        }
+
+        .price-card__currency {
+            color: #515478;
+            font-size: 18px;
+            line-height: 28px
+        }
+
+        .price-card__number {
+            color: #14142a;
+            text-align: center;
+            font-size: 64px;
+            line-height: 54px
+        }
+
+        .price-card__wrap {
+            display: flex;
+            flex-direction: column
+        }
+
+        .price-card__decimal {
+            color: #515478;
+            font-size: 18px;
+            line-height: 28px;
+            font-weight: 600
+        }
+
+        .price-card__period {
+            color: #515478;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: -6px
+        }
+
+        .price-card__discount {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px
+        }
+
+        .price-card__discount-divider {
+            position: absolute;
+            z-index: 0;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #dbe2f9;
+            transform: translateY(-50%)
+        }
+
+        .price-card__discount-icon {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .price-card__discount-text {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px
+        }
+
+        .price-card__features {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 16px
+        }
+
+        .price-card__feature {
+            color: #222e3a;
+            font-size: 14px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .price-card__feature:before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #20df9e;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .features-list__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px
+        }
+
+        .features-list__icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .features-list__text {
+            color: #293a53;
+            text-align: center;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: -.1px
+        }</style>
+    </template>
+    <style>@font-face {
+        font-family: FigtreeVF;
+        src: url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"), url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");
+        font-weight: 100 1000;
+        font-display: swap
+    }</style>
+</veepn-lock-screen>
 </body>
-<div data-v-a6bcf793="" class="aiinhbfoop light" nocolor=""><!----><!----><!----><!----></div>
 </html>
