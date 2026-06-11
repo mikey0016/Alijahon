@@ -2,409 +2,337 @@
 {% load static %}
 {% block admin_body %}
 
-        <style>
-            :root {
-                --primary-color: #4f46e5;
-                --primary-dark: #4338ca;
-                --primary-light: #818cf8;
-                --success-color: #10b981;
-                --warning-color: #f59e0b;
-                --danger-color: #ef4444;
-                --info-color: #3b82f6;
-                --dark-bg: #1e293b;
-                --light-bg: #f8fafc;
-                --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-                --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #818cf8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --dark-bg: #1e293b;
+            --light-bg: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
 
-            * {
-                transition: all 0.3s ease;
-            }
+        * {
+            transition: all 0.3s ease;
+        }
 
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-                background: #f8fafc;
-                min-height: 100vh;
-            }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
 
+        .container {
+            max-width: 1400px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .btn {
+            border-radius: 12px;
+            padding: 10px 24px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            padding: 12px 16px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .table {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
             .container {
-                max-width: 1400px;
+                padding: 10px;
             }
 
             .card {
-                border: none;
-                border-radius: 16px;
-                box-shadow: var(--card-shadow);
-                overflow: hidden;
-            }
-
-            .card:hover {
-                box-shadow: var(--card-shadow-hover);
-                transform: translateY(-4px);
+                margin-bottom: 20px;
             }
 
             .btn {
-                border-radius: 12px;
-                padding: 10px 24px;
-                font-weight: 600;
-                border: none;
-                transition: all 0.3s ease;
-            }
-
-            .btn-primary {
-                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-                color: white;
-            }
-
-            .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-            }
-
-            .form-control, .form-select {
-                border-radius: 12px;
-                border: 2px solid #e2e8f0;
-                padding: 12px 16px;
-            }
-
-            .form-control:focus, .form-select:focus {
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-            }
-
-            .badge {
-                padding: 6px 14px;
-                border-radius: 20px;
-                font-weight: 600;
+                width: 100%;
+                margin-bottom: 10px;
             }
 
             .table {
-                border-radius: 12px;
-                overflow: hidden;
-            }
-
-            .table thead {
-                background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-                color: white;
-            }
-
-            @media (max-width: 768px) {
-                .container {
-                    padding: 10px;
-                }
-
-                .card {
-                    margin-bottom: 20px;
-                }
-
-                .btn {
-                    width: 100%;
-                    margin-bottom: 10px;
-                }
-
-                .table {
-                    font-size: 12px;
-                }
-
-                .col-md-3, .col-md-9 {
-                    padding: 0 10px;
-                }
-            }
-        </style>
-
-
-
-        <style>
-            .referral-container {
-                padding: 30px 0;
-            }
-
-            .referral-card {
-                background: white;
-                border-radius: 20px;
-                padding: 32px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-                margin-bottom: 24px;
-            }
-
-            .referral-header h3 {
-                font-size: 26px;
-                font-weight: 700;
-                color: #1e293b;
-                margin: 0 0 6px;
-            }
-
-            .referral-header p {
-                color: #64748b;
-                margin: 0 0 24px;
-            }
-
-            .referral-link-box {
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                background: #f8fafc;
-                border: 1px dashed #cbd5e1;
-                border-radius: 12px;
-                padding: 12px 14px;
-            }
-
-            .referral-link-box input {
-                flex: 1;
-                border: none;
-                background: transparent;
-                color: #1e293b;
-                font-size: 14px;
-                outline: none;
-            }
-
-            .btn-copy {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                border: none;
-                padding: 9px 18px;
-                border-radius: 8px;
-                font-weight: 600;
-                font-size: 14px;
-                cursor: pointer;
-                white-space: nowrap;
-            }
-
-            .btn-copy:hover {
-                opacity: 0.92;
-            }
-
-            .copy-feedback {
-                color: #10b981;
-                font-size: 13px;
-                margin-left: 8px;
-                display: none;
-            }
-
-            .stats-pill {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                background: #eef2ff;
-                color: #4338ca;
-                padding: 8px 14px;
-                border-radius: 999px;
-                font-weight: 600;
-                font-size: 14px;
-                margin-top: 14px;
-            }
-
-            .ref-table {
-                width: 100%;
-                border-collapse: separate;
-                border-spacing: 0;
-            }
-
-            .ref-table th, .ref-table td {
-                padding: 14px 12px;
-                text-align: left;
-                font-size: 14px;
-                border-bottom: 1px solid #f1f5f9;
-            }
-
-            .ref-table th {
-                color: #64748b;
-                font-weight: 600;
                 font-size: 12px;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                background: #f8fafc;
             }
 
-            .ref-avatar {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                object-fit: cover;
-                margin-right: 10px;
-                vertical-align: middle;
+            .col-md-3, .col-md-9 {
+                padding: 0 10px;
             }
+        }
+    </style>
 
-            .empty-state {
-                text-align: center;
-                padding: 40px 20px;
-                color: #94a3b8;
-            }
+    <style>
+        .referral-container {
+            padding: 30px 0;
+        }
 
-            .empty-state i {
-                font-size: 48px;
-                margin-bottom: 12px;
-            }
-        </style>
+        .referral-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 24px;
+        }
 
+        .referral-header h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 6px;
+        }
 
+        .referral-header p {
+            color: #64748b;
+            margin: 0 0 24px;
+        }
 
+        .referral-link-box {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
 
-            <style>
-                .sidebar-modern {
-                    background: white;
-                    border-radius: 20px;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-                    overflow: hidden;
-                    position: sticky;
-                    top: 20px;
-                }
+        .referral-link-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: #1e293b;
+            font-size: 14px;
+            outline: none;
+        }
 
-                .user-profile-modern {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    padding: 30px 20px;
-                    text-align: center;
-                    position: relative;
-                }
+        .btn-copy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-                .user-profile-modern::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-                    opacity: 0.4;
-                }
+        .btn-copy:hover {
+            opacity: 0.92;
+        }
 
-                .user-avatar-modern {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    border: 4px solid white;
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-                    object-fit: cover;
-                    position: relative;
-                    z-index: 1;
-                }
+        .copy-feedback {
+            color: #10b981;
+            font-size: 13px;
+            margin-left: 8px;
+            display: none;
+            font-weight: 600;
+        }
 
-                .user-info-modern {
-                    color: white;
-                    margin-top: 15px;
-                    position: relative;
-                    z-index: 1;
-                }
+        .stats-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 14px;
+        }
 
-                .user-info-modern h6 {
-                    font-size: 18px;
-                    font-weight: 700;
-                    margin-bottom: 8px;
-                }
+        .ref-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
 
-                .user-info-modern p {
-                    font-size: 13px;
-                    opacity: 0.95;
-                    margin-bottom: 4px;
-                }
+        .ref-table th, .ref-table td {
+            padding: 14px 12px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
 
-                .nav-modern {
-                    padding: 10px 0;
-                }
+        .ref-table th {
+            color: #64748b;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #f8fafc;
+        }
 
-                .nav-modern .nav-item {
-                    margin: 0;
-                }
+        .ref-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
 
-                .nav-modern .nav-link {
-                    color: #64748b;
-                    padding: 14px 24px;
-                    display: flex;
-                    align-items: center;
-                    font-weight: 500;
-                    font-size: 15px;
-                    border-left: 3px solid transparent;
-                    transition: all 0.3s ease;
-                }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+        }
 
-                .nav-modern .nav-link i {
-                    font-size: 20px;
-                    margin-right: 12px;
-                    width: 24px;
-                    text-align: center;
-                }
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+    </style>
 
-                .nav-modern .nav-link:hover,
-                .nav-modern .nav-link.active {
-                    background: linear-gradient(90deg, rgba(102, 126, 234, 0.08) 0%, transparent 100%);
-                    color: #667eea;
-                    border-left-color: #667eea;
-                }
-
-                @media (max-width: 768px) {
-                    .sidebar-modern {
-                        margin-bottom: 20px;
-                        position: static;
-                    }
-
-                    .user-profile-modern {
-                        padding: 20px 15px;
-                    }
-
-                    .user-avatar-modern {
-                        width: 80px;
-                        height: 80px;
-                    }
-
-                    .user-info-modern h6 {
-                        font-size: 16px;
-                    }
-
-                    .user-info-modern p {
-                        font-size: 12px;
-                    }
-
-                    .nav-modern .nav-link {
-                        padding: 12px 20px;
-                        font-size: 14px;
-                    }
-
-                    .nav-modern .nav-link i {
-                        font-size: 18px;
-                        margin-right: 10px;
-                    }
-                }
-            </style>
-
-
-            <div class="col-md-9">
-                <div class="referral-card">
-                    <div class="referral-header">
-                        <h3>Referal havola</h3>
-                        <p>Ushbu havola orqali ro'yxatdan o'tgan foydalanuvchilar sizning referallaringiz bo'ladi.</p>
-                    </div>
-
-                    <div class="referral-link-box">
-                        <input type="text" id="referral-link" value="https://alijahon.uz/register?id=39291" readonly="">
-                        <button type="button" class="btn-copy" id="copy-ref-btn">
-                            <i class="icofont-copy"></i> Nusxa olish
-                        </button>
-                        <span class="copy-feedback" id="copy-feedback">Nusxalandi!</span>
-                    </div>
-
-                    <div class="stats-pill">
-                        <i class="icofont-users-alt-4"></i>
-                        Jami referallar: 0
-                    </div>
-                </div>
-
-                <div class="referral-card">
-                    <div class="referral-header">
-                        <h3>Referallar ro'yxati</h3>
-                        <p>Sizning havolangiz orqali ro'yxatdan o'tgan foydalanuvchilar.</p>
-                    </div>
-
-
-                    <div class="empty-state">
-                        <i class="icofont-users-alt-4"></i>
-                        <div>Hozircha referallar yo'q.</div>
-                    </div>
-
-                </div>
+    <div class="col-md-9">
+        <div class="referral-card">
+            <div class="referral-header">
+                <h3>Referal havola</h3>
+                <p>Ushbu havola orqali ro'yxatdan o'tgan foydalanuvchilar sizning referallaringiz bo'ladi.</p>
             </div>
 
+            <div class="referral-link-box">
+                <input type="text" id="referral-link" value="http://127.0.0.1:8000{% url 'home' %}?referal={{ request.user.id }}" readonly>
+                <button type="button" class="btn-copy" id="copy-ref-btn">
+                    <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/ffffff/copy.png" alt="copy"/>
+                    Nusxa olish
+                </button>
+                <span class="copy-feedback" id="copy-feedback">Nusxalandi!</span>
+            </div>
 
+            <div class="stats-pill">
+                <img width="24" height="24" src="https://img.icons8.com/ios/50/select-all.png" alt="select-all"/>
+                Jami referallar: {{ referrals|length|default:"0" }}
+            </div>
+        </div>
 
+        <div class="referral-card">
+            <div class="referral-header">
+                <h3>Referallar ro'yxati</h3>
+                <p>Sizning havolangiz orqali ro'yxatdan o'tgan foydalanuvchilar.</p>
+            </div>
 
+            {% if referrals %}
+                <div class="table-responsive">
+                    <table class="ref-table">
+                        <thead>
+                        <tr>
+                            <th>Foydalanuvchi</th>
+                            <th>Email / Tel</th>
+                            <th>Sana</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ref in referrals %}
+                            <tr>
+                                <td>
+                                    {% if ref.profile_picture %}
+                                        <img src="{{ ref.profile_picture.url }}" class="ref-avatar" alt="avatar">
+                                    {% else %}
+                                        <img src="https://img.icons8.com/illustrations/50/user-male-circle.png" class="ref-avatar" alt="avatar">
+                                    {% endif %}
+                                    <strong>{{ ref.get_full_name|default:ref.username }}</strong>
+                                </td>
+                                <td>{{ ref.email|default:ref.phone_number|default:"Kiritilmagan" }}</td>
+                                <td>{{ ref.date_joined|date:"d.m.Y H:i" }}</td>
+                                <td>
+                                    {% if ref.is_active %}
+                                        <span class="badge bg-success" style="background-color: var(--success-color) !important;">Faol</span>
+                                    {% else %}
+                                        <span class="badge bg-danger" style="background-color: var(--danger-color) !important;">Nofaol</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <img width="51" height="51" src="https://img.icons8.com/external-stick-figures-gan-khoon-lay/51/external-arrow-people-business-human-resource-stick-figures-gan-khoon-lay.png" alt="empty"/>
+                    <div class="mt-2">Hozircha referallar yo'q.</div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('copy-ref-btn').addEventListener('click', function() {
+            var copyText = document.getElementById('referral-link');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value).then(function() {
+                var feedback = document.getElementById('copy-feedback');
+                feedback.style.display = 'inline';
+                setTimeout(function() {
+                    feedback.style.opacity = '0';
+                    setTimeout(function() {
+                        feedback.style.display = 'none';
+                        feedback.style.opacity = '1';
+                    }, 300);
+                }, 2000);
+            }).catch(function(err) {
+                console.error(err);
+            });
+        });
+    </script>
 
 {% endblock %}
+

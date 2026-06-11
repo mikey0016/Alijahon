@@ -547,46 +547,12 @@
 
             <div class="col-md-9">
                 <!-- Modal -->
-                <div class="modal fade" id="edit-profile-modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content" style="border-radius: 20px; border: none;">
-                            <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0;">
-                                <h5 class="modal-title">
-                                    <i class="icofont-link"></i> Oqim yaratish
-                                </h5>
-                                <button type="button" class="close text-white" data-dismiss="modal">
-                                    <span>×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" style="padding: 30px;">
-                                <form method="POST" class="form-class">
-                                    <input type="hidden" name="csrfmiddlewaretoken" value="8aZD61a2KcWViha9FGhMaIdKjYAMpdvKI8QcTSj7FUO4Sv0pTCmvpJrwTMPp7NRH">
-                                    <input name="product_id" type="hidden" id="hidden_product" value="">
 
-                                    <div class="form-group mb-3">
-                                        <label class="font-weight-bold">Oqim nomi</label>
-                                        <input type="text" name="title" class="form-control" placeholder="" mt-2="Oqim uchun nom kiriting" required="" id="id_title">
-
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label class="font-weight-bold">Chegirma</label>
-                                        <input type="number" name="discount" class="form-control" placeholder="" mt-2="Chegirma miqdori: {{ product.benefit }} so&#39;mgacha" id="id_discount">
-
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary w-100 mt-3" style="padding: 12px; border-radius: 12px;">
-                                        <i class="icofont-check"></i> Oqim yaratish
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="market-header">
                     <h3>
-                        <i class="icofont-shopping-cart"></i> Sotuvdagi Mahsulotlar
+                        <img width="48" height="48" src="https://img.icons8.com/color/48/sale--v1.png" alt="sale--v1"/>
+                        Sotuvdagi Mahsulotlar
                     </h3>
 
                     <div class="category-tabs">
@@ -601,7 +567,7 @@
                         <form action="https://alijahon.uz/admin_page/market" method="GET" autocomplete="off">
                             <input id="search-input" name="q" class="search-input" type="search" placeholder="Mahsulot qidirish...">
                             <button type="submit">
-                                <i class="icofont-search"></i>
+                                <img width="30" height="30" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/>
                             </button>
                         </form>
                     </div>
@@ -638,13 +604,55 @@
                                     <div class="product-actions">
                                         <button class="product-btn primary btn_open_modal"
                                                 data-toggle="modal"
-                                                data-target="#edit-profile-modal"
+                                                data-target="#edit-profile-modal{{ pro.id }}"
                                                 name="{{ pro.id }}">
-                                            <i class="icofont-link"></i> Oqim yaratish
+                                            <img width="24" height="24" src="https://img.icons8.com/color/48/share--v2.png" alt="share--v2"/>
+                                            Oqim yaratish
                                         </button>
                                         <a href="{% url 'detail' pro.id %}"  class="product-btn secondary">
-                                            <i class="icofont-eye"></i> Batafsil
+                                            <img width="22" height="22" src="https://img.icons8.com/color/48/info--v3.png" alt="info--v3"/>
+                                            Batafsil
                                         </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="edit-profile-modal{{ pro.id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" style="border-radius: 20px; border: none;">
+                                    <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px 20px 0 0;">
+                                        <h5 class="modal-title">
+                                            <i class="icofont-link"></i> Oqim yaratish
+                                        </h5>
+                                        <button type="button" class="close text-white" data-dismiss="modal">
+                                            <span>×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 30px;">
+
+                                        <form action="{% url 'oqim' %}" method="post" class="form-class" id="flowForm">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="product" id="hidden_product" value="{{ pro.id }}">
+                                            <input type="hidden" name="user" id="hidden_product" value="{{ user.id }}">
+
+
+                                            <div class="form-group mb-3">
+                                                <label class="font-weight-bold">Oqim nomi</label>
+                                                <input type="text" name="title" class="form-control" placeholder="" mt-2="Oqim uchun nom kiriting" required="" id="id_title">
+
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label class="font-weight-bold">Chegirma</label>
+                                                <input type="number" name="discount" class="form-control" placeholder="" mt-2="Chegirma miqdori: {{ product.benefit }} so&#39;mgacha" id="id_discount">
+
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary w-100 mt-3" style="padding: 12px; border-radius: 12px;">
+                                                <i class="icofont-check"></i> Oqim yaratish
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -737,4 +745,11 @@
                 </div>
 
             </div>
+    <script>
+        $('.btn_open_modal').on('click', function () {
+            let product_id = $(this).attr('name');
+            $('#hidden_product').val(product_id);
+        })
+    </script>
+
 {% endblock %}

@@ -23,23 +23,25 @@
                     <div class="amount">{{ user.coins }}</div>
                 </div>
             </div>
+
             <div class="api-key-section">
                 <div class="label">API Key</div>
                 <div class="api-key-content">
                     <div class="api-key-wrapper">
                         <div class="key" id="apiKeyDisplay" style="display: block;">••••••••••••••••••••••••••••</div>
                         <div class="key" id="apiKeyActual" style="display: none;">hNwnLQweTY0FIOFja4Ry6paFLEUUMJuX</div>
-                        <i class="icofont-eye toggle-eye" id="toggleIcon" onclick="toggleApiKey()" title="Ko'rsatish/Yashirish"></i>
+                        <img width="24" height="24" src="https://img.icons8.com/color/48/show-password.png"
+                             alt="show-password" title="Ko'rsatish/Yashirish">
                     </div>
                     <button class="btn btn-primary btn-sm" onclick="copyApiKey()">
-                        <i class="icofont-copy"></i> Nusxa olish
+                        <img width="30" height="30" src="https://img.icons8.com/color/48/copy--v1.png" alt="copy--v1"/>
                     </button>
                 </div>
             </div>
 
             <div class="menu-grid">
                 <a href="{% url 'market' %}" class="menu-item">
-                    <i class="icofont-shopping-cart"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/small-business.png" alt="small-business"/>
                     <div class="text">
                         <h5>Market</h5>
                         <p>Mahsulotlarni ko'rish</p>
@@ -47,7 +49,7 @@
                 </a>
 
                 <a href="{% url 'havolalar' %}" class="menu-item">
-                    <i class="icofont-link"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/share--v2.png" alt="share--v2"/>
                     <div class="text">
                         <h5>Havolalar</h5>
                         <p>Oqimlarni boshqarish</p>
@@ -55,7 +57,7 @@
                 </a>
 
                 <a href="{% url 'request' %}" class="menu-item">
-                    <i class="icofont-list"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/ask-question.png" alt="ask-question"/>
                     <div class="text">
                         <h5>So'rovnomalar</h5>
                         <p>Buyurtmalarni ko'rish</p>
@@ -63,15 +65,15 @@
                 </a>
 
                 <a href="{% url 'stats' %}" class="menu-item">
-                    <i class="icofont-chart-bar-graph"></i>
                     <div class="text">
+                        <img width="24" height="24" src="https://img.icons8.com/color/48/statistics.png" alt="statistics"/>
                         <h5>Statistika</h5>
                         <p>Hisobotlar va tahlil</p>
                     </div>
                 </a>
 
                 <a href="{% url 'pay' %}" class="menu-item">
-                    <i class="icofont-money"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/cash-in-hand.png" alt="cash-in-hand"/>
                     <div class="text">
                         <h5>To'lov</h5>
                         <p>Pul yechish</p>
@@ -79,7 +81,7 @@
                 </a>
 
                 <a href="{% url 'konkurs' %}" class="menu-item">
-                    <i class="icofont-trophy-alt"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/trophy.png" alt="trophy"/>
                     <div class="text">
                         <h5>Konkurs</h5>
                         <p>Ishtirok etish</p>
@@ -87,7 +89,7 @@
                 </a>
 
                 <a href="/profile/liked-products" class="menu-item">
-                    <i class="icofont-heart"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/likes-folder.png" alt="likes-folder"/>
                     <div class="text">
                         <h5>Saralanganlar</h5>
                         <p>Yoqtirgan mahsulotlar</p>
@@ -95,7 +97,7 @@
                 </a>
 
                 <a href="{% url 'settings' %}" class="menu-item">
-                    <i class="icofont-ui-settings"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/settings--v2.png" alt="settings--v2"/>
                     <div class="text">
                         <h5>Sozlamalar</h5>
                         <p>Profilni tahrirlash</p>
@@ -103,7 +105,7 @@
                 </a>
 
                 <a href="{% url 'logout' %}" class="menu-item">
-                    <i class="icofont-logout"></i>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/logout-rounded--v1.png" alt="logout-rounded--v1"/>
                     <div class="text">
                         <h5>Chiqish</h5>
                         <p>Tizimdan chiqish</p>
@@ -112,4 +114,37 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function copyApiKey() {
+            const apiKeyText = document.getElementById('apiKeyActual').innerText;
+            navigator.clipboard.writeText(apiKeyText).then(() => {
+                alert("API kalit nusxalandi!");
+            }).catch(err => {
+                console.error("Nusxalashda xatolik yuz berdi: ", err);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleIcon = document.querySelector('.api-key-wrapper img');
+            const keyDisplay = document.getElementById('apiKeyDisplay');
+            const keyActual = document.getElementById('apiKeyActual');
+
+            if (toggleIcon) {
+                toggleIcon.style.cursor = 'pointer';
+
+                toggleIcon.addEventListener('click', () => {
+                    if (keyDisplay.style.display === 'block' || keyDisplay.style.display === '') {
+                        keyDisplay.style.display = 'none';
+                        keyActual.style.display = 'block';
+                        toggleIcon.src = "https://img.icons8.com/color/48/hide.png";
+                    } else {
+                        keyDisplay.style.display = 'block';
+                        keyActual.style.display = 'none';
+                        toggleIcon.src = "https://img.icons8.com/color/48/show-password.png";
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}

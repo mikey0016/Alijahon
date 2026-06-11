@@ -5,10 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.hashers import check_password, make_password
 from django.core.exceptions import ValidationError
 from django.db.models import Model
+from django.db.transaction import clean_savepoints
 from django.forms import ModelForm, CharField
 
 
-from apps.models import User
+from apps.models import User, Stream, Transaction
 
 
 class LoginForm(ModelForm):
@@ -61,3 +62,31 @@ class RegistrationForm(ModelForm):
         password = self.data['password']
         if conf_password != password:
             raise Exception('Confirm password xato kiritilgan!')
+
+class StreamForm(ModelForm):
+    class Meta:
+        model = Stream
+        fields = ['title', 'discount', 'product', 'user']
+
+    def clean(self):
+        discount = self.cleaned_data['discount']
+        product = self.cleaned_data['product']
+        if discount >= product.price:
+            raise ValidationError("Chegirma mahsulot narxidan kichik bo'lishi kerak!")
+        return self.cleaned_data
+
+class PayForm(ModelForm):
+    class Meta:
+        model =  Transaction
+        fields = ['card_number', 'amount', 'type']
+
+    def clean_amount(self):
+        amount = self.cleaned_data.get('amount')
+        if amount is not None and amount <= 0:
+            raise ValidationError("Summa 0 dan katta bo'lishi kerak!")
+        return amount
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'telegram_id', 'description' , ]

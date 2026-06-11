@@ -2,7 +2,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from apps.views import *
+from apps.views import AlijahonHomeView, CategoryProductsView, AccountView, AdminMarketView, SorovTemplateView, \
+    HavolaTemplateView, StatistikaTemplateView, PayTemplateView, KonkursTemplateView, ReferalTemplateView, \
+    SettingsTemplateView, LoginFormView, RegisterView, LogOut, ProductDetailView, StreamCreateView, \
+    HavolaDeleteView, DistrictListView
 from root import settings
 
 urlpatterns = [
@@ -23,7 +26,10 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='register'),
     path('logout', LogOut.as_view(), name='logout'),
     path('detail/<int:pk>', ProductDetailView.as_view(), name='detail'),
-    path('market/<int:pk>', AdminMarketView.as_view(), name='market_category')
+    path('market/<int:pk>', AdminMarketView.as_view(), name='market_category'),
+    path('stream', StreamCreateView.as_view(), name='oqim'),
+    path('stream/delete/<int:pk>', HavolaDeleteView.as_view(), name='delete'),
+    path('district', DistrictListView, name='district'),
 ]
 
 if settings.DEBUG:

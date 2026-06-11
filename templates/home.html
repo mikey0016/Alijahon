@@ -30,7 +30,7 @@
                         <a href="{% url 'category' c.id %}" class=" category-card">
                             <div class="category-image-wrapper">
                                 <img class="category-image"
-                                     src="{{ c.photo.url }}"
+                                     src="{{ c.image.url }}"
                                      alt="{{ c.title }}">
                             </div>
                             <h6 class="category-title">{{ c.title }}</h6>
@@ -49,7 +49,7 @@
                 <h2 class="section-title">Eng ko'p sotiladigan</h2>
                 <a href="{% url 'shop' %}" class="view-all-link">
                     Barchasini ko'rish
-                    <i class="icofont-rounded-right"></i>
+                    <img width="26" height="26" src="https://img.icons8.com/color/48/connection-status-off--v1.png" alt="connection-status-off--v1"/>
                 </a>
             </div>
 
@@ -90,7 +90,7 @@
                 <h2 class="section-title">Yangi mahsulotlar</h2>
                 <a href="{% url 'shop' %}" class="view-all-link">
                     Barchasini ko'rish
-                    <i class="icofont-rounded-right"></i>
+                    <img width="26" height="26" src="https://img.icons8.com/color/48/connection-status-off--v1.png" alt="connection-status-off--v1"/>
                 </a>
             </div>
 
