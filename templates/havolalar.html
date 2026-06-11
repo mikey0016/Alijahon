@@ -1,0 +1,117 @@
+{% extends 'base/admin_page_base.html' %}
+
+{% block admin_body %}
+    <div class="col-md-9">
+        <div class="urls-header">
+            <h3>
+                <img width="30" height="30" src="https://img.icons8.com/color/48/survey.png" alt="survey"/> Mening Havolalarim
+            </h3>
+        </div>
+
+        <div class="search-bar" style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="streamSearch" placeholder="Oqim nomi yoki ID bo'yicha qidirish..." style="flex: 1;">
+            <button type="button" id="searchBtn" style="display: flex; align-items: center; gap: 5px;">
+                <img width="30" height="30" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/>
+                Qidirish
+            </button>
+        </div>
+
+        {% for stream in streams %}
+            {% if stream %}
+                <div class="col-lg-6 col-md-12 stream-card-wrapper">
+                    <div class="stream-card">
+                        <div class="stream-header">
+                            <h5 class="stream-title">{{ stream.title }}</h5>
+
+                            <span class="stream-benefit">-{{ stream.discount }}</span>
+                            <form action="{% url 'delete' stream.pk %}" method="post" onsubmit="return confirmDelete()">
+                                {% csrf_token %}
+                                <button class="delete-btn">
+                                    <img width="27" height="27" src="https://img.icons8.com/color/48/waste--v1.png" alt="waste--v1"/>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="stream-body">
+                            <div class="link-input-group">
+                                <input type="text" value="http://127.0.0.1:8000/oqim/{{ stream.id }}" readonly="" class="link-input ref-link-{{ stream.id }}">
+                            </div>
+
+                            <div class="action-buttons">
+                                <button class="action-btn copy" onclick="copyLink('{{ stream.id }}')">
+                                    <img width="27" height="27" src="https://img.icons8.com/color/48/copy--v1.png" alt="copy--v1"/>
+                                    <span>Nusxa olish</span>
+                                </button>
+                                <a href="/oqim/{{ stream.id }}" target="_blank" class="action-btn view">
+                                    <img width="27" height="27" src="https://img.icons8.com/color/48/share-3.png" alt="share-3"/>
+                                    <span>Ko'rish</span>
+                                </a>
+                                <a href="https://t.me/alijahon_newbot?start=order_{{ stream.id }}" target="_blank" class="action-btn telegram">
+                                    <img width="27" height="27" src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="telegram-app--v1"/>
+                                    <span>Telegram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <i class="icofont-link"></i>
+                    <h4>Hozircha havolalar mavjud emas</h4>
+                    <p class="text-muted">Birinchi oqimingizni yarating</p>
+                </div>
+
+                <div class="pagination-wrap">
+                    <span class="current">1</span>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <script>
+        function copyLink(streamId) {
+            const inputElement = document.querySelector('.ref-link-' + streamId);
+            if (inputElement) {
+                navigator.clipboard.writeText(inputElement.value).then(() => {
+                    alert("Havola nusxalandi!");
+                }).catch(err => {
+                    console.error("Nusxalashda xatolik yuz berdi: ", err);
+                });
+            }
+        }
+
+        function confirmDelete() {
+            return confirm("Haqiqatan ham ushbu oqimni o'chirib tashlamoqchimisiz?");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById('streamSearch');
+            const searchBtn = document.getElementById('searchBtn');
+
+            // Qidiruv mantiqiy funksiyasi
+            function performSearch() {
+                const filter = searchInput.value.toLowerCase();
+                const cards = document.querySelectorAll('.stream-card-wrapper');
+
+                cards.forEach(card => {
+                    const title = card.querySelector('.stream-title').innerText.toLowerCase();
+                    const linkInput = card.querySelector('.link-input').value.toLowerCase();
+
+                    if (title.includes(filter) || linkInput.includes(filter)) {
+                        card.style.display = "";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            }
+
+            if (searchInput && searchBtn) {
+                // 1. Harf yozilganda ham avtomatik qidiradi
+                searchInput.addEventListener('input', performSearch);
+
+                // 2. Oldidagi qidiruv tugmasi bosilganda ham qidiradi
+                searchBtn.addEventListener('click', performSearch);
+            }
+        });
+    </script>
+{% endblock %}
