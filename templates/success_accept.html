@@ -1,0 +1,138 @@
+{% extends 'base/base.html' %}
+{% block body %}
+    {% load static %}
+    <title>Buyurtma qabul qilindi - Alijahon.uz</title>
+    <link href="{% static 'detail/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'detail/icofont.min.css' %}" rel="stylesheet">
+
+    <style>
+        .success-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        .success-box {
+            background: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+        }
+        .success-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        .order-table {
+            margin-top: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .order-table thead {
+            background: #5B52F9;
+            color: white;
+        }
+        .order-table thead th {
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .order-table tbody td {
+            padding: 20px 15px;
+            text-align: center;
+            vertical-align: middle;
+            border-color: #f0f0f0;
+        }
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .total-left h3 {
+            font-size: 32px;
+            margin: 5px 0 0 0;
+            font-weight: 700;
+        }
+        .total-left p {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .delivery-note {
+            text-align: center;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .btn-back {
+            background: #5B52F9;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+        }
+        .btn-back:hover {
+            background: #4a42d4;
+            color: white;
+        }
+    </style>
+
+    <section class="success-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="success-box">
+                        <div class="text-center">
+                            <div class="success-icon">
+                                <svg viewBox="0 0 52 52">
+                                    <circle cx="26" cy="26" r="25" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                                    <path fill="none" stroke="#4CAF50" stroke-width="3" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                </svg>
+                            </div>
+                            <h2 class="mb-3">Arizangiz qabul qilindi!</h2>
+                            <p class="text-muted mb-2">Batafsil ma'lumot uchun operator yaqin vaqt ichida siz bilan aloqaga chiqadi.</p>
+                            <p class="text-muted">Iltimos, telefoningiz yoqilgan holda bo'lsin!</p>
+                        </div>
+
+                        <table class="table order-table">
+                            <thead>
+                                <tr>
+                                    <th>Mahsulot</th>
+                                    <th>Summa</th>
+                                    <th>Soni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>{{ order.product.title }}</strong></td>
+                                    <td><strong>{{ order.product.price }}</strong></td>
+                                    <td><strong>{{ order.quantity }}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="delivery-note">Yetkazib berish narxi adresga qarab o'zgaradi</p>
+
+                        <div class="total-section">
+                            <div class="total-left">
+                                <p>Jami</p>
+                                <h3>{{ order.total_price }} so'm</h3>
+                            </div>
+                            <a href="{% url 'home' %}" class="btn btn-back">Boshqa mahsulotlar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

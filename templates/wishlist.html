@@ -1,0 +1,218 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block body %}
+    <section class="wishlist-section py-5">
+        <div class="container">
+            <div class="section-header mb-4">
+                <h2 class="section-title">Mening Wishlistim</h2>
+                <p class="text-muted">Siz saqlagan mahsulotlar ({{ wishlist_items.count }})</p>
+            </div>
+
+            {% if wishlist_items %}
+                <div class="row g-4">
+                    {% for item in wishlist_items %}
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 wishlist-item" data-id="{{ item.product.id }}">
+                            <div class="product-card" style="position: relative; border: 1px solid #eee; border-radius: 10px; overflow: hidden; transition: all 0.3s ease; background: white;">
+                                <a href="{% url 'detail' item.product.id %}" class="product-image-link">
+                                    <div class="product-image-wrapper" style="position: relative; padding-top: 100%; overflow: hidden;">
+                                        <img class="product-image"
+                                             src="{{ item.product.image.url }}"
+                                             alt="{{ item.product.title }}"
+                                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+                                             loading="lazy">
+                                    </div>
+                                </a>
+                                <button class="wishlist-btn active-wishlist"
+                                        data-id="{{ item.product.id }}"
+                                        onclick="toggleWishlist(this)"
+                                        style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: all 0.3s ease; color: red; font-weight: bold; z-index: 10;">
+                                    ♥
+                                </button>
+                                <div class="product-info p-3">
+                                    <h6 class="product-title mb-2">
+                                        <a href="{% url 'detail' item.product.id %}" class="text-decoration-none text-dark">
+                                            {{ item.product.title }}
+                                        </a>
+                                    </h6>
+                                    <p class="product-price text-primary fw-bold mb-3">{{ item.product.price }} so'm</p>
+                                    <a href="{% url 'detail' item.product.id %}" class="btn btn-primary btn-sm w-100">
+                                        Savatga qo'shish
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-wishlist text-center py-5">
+                    <svg width="150" height="150" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.54L12 21.35Z" fill="#ff4757" stroke="#ff4757" stroke-width="1.5"/>
+                    </svg>
+                    <h3 class="mt-4">Wishlistingiz bo'sh</h3>
+                    <p class="text-muted">Hali hech qanday mahsulot saqlamagansiz</p>
+                    <a href="{% url 'shop' %}" class="btn btn-primary mt-3">Mahsulotlarni ko'rish</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <script>
+        function toggleWishlist(btn) {
+            const id = btn.dataset.id;
+            const originalText = btn.textContent;
+
+            btn.textContent = '⏳';
+            btn.disabled = true;
+
+            fetch('/wishlist/toggle/', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCookie('csrftoken')
+                },
+                body: JSON.stringify({ pk: id })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    if (data.active === false) {
+                        // Mahsulot wishlistdan o'chirildi
+                        const productCard = btn.closest('.wishlist-item');
+                        if (productCard) {
+                            productCard.style.animation = 'fadeOut 0.3s ease';
+                            setTimeout(() => {
+                                productCard.remove();
+                                showNotification('❌ Mahsulot wishlistdan o\'chirildi');
+
+                                // Wishlist bo'shab qolsa sahifani yangilash
+                                const remainingItems = document.querySelectorAll('.wishlist-item');
+                                if (remainingItems.length === 0) {
+                                    setTimeout(() => location.reload(), 500);
+                                } else {
+                                    // Wishlist sonini yangilash
+                                    const countElement = document.querySelector('.text-muted');
+                                    if (countElement) {
+                                        countElement.textContent = `Siz saqlagan mahsulotlar (${remainingItems.length})`;
+                                    }
+                                }
+                            }, 300);
+                        }
+                    } else {
+                        btn.textContent = '♥';
+                        btn.style.color = 'red';
+                        btn.style.fontWeight = 'bold';
+                        showNotification('✅ Mahsulot wishlistga qo\'shildi');
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Xato:', error);
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    showNotification('Xato yuz berdi! Iltimos, qaytadan urinib ko\'ring', 'error');
+                });
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding: 12px 20px;
+        background: ${type === 'error' ? '#ff4757' : '#2ed573'};
+        color: white;
+        border-radius: 8px;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-weight: 500;
+        font-size: 14px;
+        animation: slideInRight 0.3s ease;
+    `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // CSS animationlar
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    .wishlist-btn {
+        transition: all 0.3s ease;
+    }
+
+    .wishlist-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .wishlist-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+`;
+        document.head.appendChild(styleSheet);
+    </script>
+{% endblock %}
