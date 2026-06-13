@@ -17,7 +17,7 @@ $(document).ready(function() {
         autoPlay: 3500,
 		dots: false,
         nav: true,
-        navigationText: ["<i class='icofont icofont-thin-left'></i>", "<i class='icofont icofont-thin-right'></i>"],
+        navigationText: ["<img width=\"30\" height=\"30\" src=\"https://img.icons8.com/color/48/left.png\" alt=\"left\"/>", "<img width=\"30\" height=\"30\" src=\"https://img.icons8.com/color/48/right--v1.png\" alt=\"right--v1\"/>"],
         afterAction: syncPosition,
         responsiveRefreshRate: 200,
     });
@@ -33,7 +33,7 @@ $(document).ready(function() {
             autoPlay: 2000,
             navigation: true,
             stopOnHover: true,
-			navigationText: ["<i class='icofont icofont-thin-left'></i>", "<i class='icofont icofont-thin-right'></i>"]
+			navigationText: ["<img width=\"30\" height=\"30\" src=\"https://img.icons8.com/color/48/left.png\" alt=\"left\"/>", "<img width=\"30\" height=\"30\" src=\"https://img.icons8.com/color/48/right--v1.png\" alt=\"right--v1\"/>"]
         });
     }
 

@@ -154,6 +154,7 @@
             color: #1e293b;
             font-size: 14px;
             outline: none;
+            word-break: break-all;
         }
 
         .btn-copy {
@@ -173,6 +174,8 @@
 
         .btn-copy:hover {
             opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .copy-feedback {
@@ -227,14 +230,19 @@
             vertical-align: middle;
         }
 
+        .ref-user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: #94a3b8;
         }
 
-        .empty-state i {
-            font-size: 48px;
+        .empty-state img {
             margin-bottom: 12px;
         }
     </style>
@@ -247,17 +255,25 @@
             </div>
 
             <div class="referral-link-box">
-                <input type="text" id="referral-link" value="http://127.0.0.1:8000{% url 'home' %}?referal={{ request.user.id }}" readonly>
+                <input type="text" id="referral-link" value="127.0.0.1:8000{% url 'home' %}?referal={{ request.user.id }}" readonly>
                 <button type="button" class="btn-copy" id="copy-ref-btn">
-                    <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/ffffff/copy.png" alt="copy"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    </svg>
                     Nusxa olish
                 </button>
-                <span class="copy-feedback" id="copy-feedback">Nusxalandi!</span>
+                <span class="copy-feedback" id="copy-feedback">✓ Nusxalandi!</span>
             </div>
 
             <div class="stats-pill">
-                <img width="24" height="24" src="https://img.icons8.com/ios/50/select-all.png" alt="select-all"/>
-                Jami referallar: {{ referrals|length|default:"0" }}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Jami referallar: <strong>{{ referral_count|default:"0" }}</strong>
             </div>
         </div>
 
@@ -273,8 +289,8 @@
                         <thead>
                         <tr>
                             <th>Foydalanuvchi</th>
-                            <th>Email / Tel</th>
-                            <th>Sana</th>
+                            <th>Telefon raqami</th>
+                            <th>Ro'yxat sanasi</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -282,20 +298,24 @@
                         {% for ref in referrals %}
                             <tr>
                                 <td>
-                                    {% if ref.profile_picture %}
-                                        <img src="{{ ref.profile_picture.url }}" class="ref-avatar" alt="avatar">
-                                    {% else %}
-                                        <img src="https://img.icons8.com/illustrations/50/user-male-circle.png" class="ref-avatar" alt="avatar">
-                                    {% endif %}
-                                    <strong>{{ ref.get_full_name|default:ref.username }}</strong>
+                                    <div class="ref-user-info">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="#e2e8f0" stroke="#64748b"
+                                             stroke-width="1">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <strong>{{ ref.get_full_name }}</strong>
+                                    </div>
                                 </td>
-                                <td>{{ ref.email|default:ref.phone_number|default:"Kiritilmagan" }}</td>
-                                <td>{{ ref.date_joined|date:"d.m.Y H:i" }}</td>
+                                <td>{{ ref.phone_number }}</td>
+                                <td>{{ ref.date_joined }}</td>
                                 <td>
                                     {% if ref.is_active %}
-                                        <span class="badge bg-success" style="background-color: var(--success-color) !important;">Faol</span>
+                                        <span class="badge"
+                                              style="background-color: var(--success-color) !important; color: white;">✓ Faol</span>
                                     {% else %}
-                                        <span class="badge bg-danger" style="background-color: var(--danger-color) !important;">Nofaol</span>
+                                        <span class="badge"
+                                              style="background-color: var(--danger-color) !important; color: white;">✗ Nofaol</span>
                                     {% endif %}
                                 </td>
                             </tr>
@@ -305,7 +325,12 @@
                 </div>
             {% else %}
                 <div class="empty-state">
-                    <img width="51" height="51" src="https://img.icons8.com/external-stick-figures-gan-khoon-lay/51/external-arrow-people-business-human-resource-stick-figures-gan-khoon-lay.png" alt="empty"/>
+                    <svg width="51" height="51" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                     <div class="mt-2">Hozircha referallar yo'q.</div>
                 </div>
             {% endif %}
@@ -314,25 +339,24 @@
     </div>
 
     <script>
-        document.getElementById('copy-ref-btn').addEventListener('click', function() {
+        document.getElementById('copy-ref-btn').addEventListener('click', function () {
             var copyText = document.getElementById('referral-link');
             copyText.select();
             copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value).then(function() {
+            navigator.clipboard.writeText(copyText.value).then(function () {
                 var feedback = document.getElementById('copy-feedback');
                 feedback.style.display = 'inline';
-                setTimeout(function() {
+                setTimeout(function () {
                     feedback.style.opacity = '0';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         feedback.style.display = 'none';
                         feedback.style.opacity = '1';
                     }, 300);
                 }, 2000);
-            }).catch(function(err) {
-                console.error(err);
+            }).catch(function (err) {
+                console.error('Copy failed:', err);
             });
         });
     </script>
 
 {% endblock %}
-

@@ -5,7 +5,7 @@ from django.urls import path
 from apps.views import AlijahonHomeView, CategoryProductsView, AccountView, AdminMarketView, SorovTemplateView, \
     HavolaTemplateView, StatistikaTemplateView, PayTemplateView, KonkursTemplateView, ReferalTemplateView, \
     SettingsTemplateView, LoginFormView, RegisterView, LogOut, ProductDetailView, StreamCreateView, \
-    HavolaDeleteView, DistrictListView
+    HavolaDeleteView, district_view, success_accept, WishListView, check_wishlist_status, WishListToggleView
 from root import settings
 
 urlpatterns = [
@@ -29,7 +29,12 @@ urlpatterns = [
     path('market/<int:pk>', AdminMarketView.as_view(), name='market_category'),
     path('stream', StreamCreateView.as_view(), name='oqim'),
     path('stream/delete/<int:pk>', HavolaDeleteView.as_view(), name='delete'),
-    path('district', DistrictListView, name='district'),
+    path('district', district_view, name='district'),
+    path('success-accept', success_accept, name='success_accept'),
+
+    path('wishlist/', WishListView.as_view(), name='wishlist'),
+    path('wishlist/toggle/', WishListToggleView.as_view(), name='wish-list-toggle'),
+    path('wishlist/check/', check_wishlist_status, name='check-wishlist'),
 ]
 
 if settings.DEBUG:

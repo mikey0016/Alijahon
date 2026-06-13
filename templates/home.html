@@ -1,7 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-
 {% block body %}
     <div class="hero-section">
         <div class="container-fluid px-0">
@@ -20,11 +19,9 @@
         </div>
     </div>
 
-
     <section class="categories-section py-4">
         <div class="container">
             <div class="row g-3">
-
                 {% for c in cate %}
                     <div class="col-4 col-md-4 col-lg-3">
                         <a href="{% url 'category' c.id %}" class=" category-card">
@@ -36,13 +33,11 @@
                             <h6 class="category-title">{{ c.title }}</h6>
                         </a>
                     </div>
-
                 {% endfor %}
-
-
             </div>
         </div>
     </section>
+
     <section class="products-section py-5 bg-light">
         <div class="container">
             <div class="section-header mb-4">
@@ -57,7 +52,7 @@
                 {% for pro in pro_data %}
                     <div class="owl-item" style="width: 346px;">
                         <div class="item">
-                            <div class="product-card">
+                            <div class="product-card" style="position: relative;">
                                 <a href="{% url 'detail' pro.id %}"
                                    class="product-image-link">
                                     <div class="product-image-wrapper">
@@ -66,9 +61,16 @@
                                              loading="lazy">
                                     </div>
                                 </a>
+                                <button class="wishlist-btn"
+                                        data-id="{{ pro.id }}"
+                                        onclick="toggleWishlist(this)"
+                                        style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: all 0.3s ease;"
+                                        title="Wishlistga qo'shish">
+                                    ♡
+                                </button>
                                 <div class="product-info">
                                     <h6 class="product-title">
-                                        <a href="">
+                                        <a href="{% url 'detail' pro.id %}">
                                             {{ pro.title }}
                                         </a>
                                     </h6>
@@ -78,8 +80,6 @@
                         </div>
                     </div>
                 {% endfor %}
-
-
             </div>
         </div>
     </section>
@@ -95,19 +95,25 @@
             </div>
 
             <div class="owl-carousel owl-carousel-category owl-theme">
-
                 {% for i in pro_data %}
                     <div class="item">
-                        <div class="product-card">
+                        <div class="product-card" style="position: relative;">
                             <a href="{% url 'detail' i.pk %}"
                                class="product-image-link">
                                 <div class="product-image-wrapper">
                                     <img class="product-image"
                                          src="{{ i.image.url }}"
-                                         alt="2 talik moshina ventilyator"
+                                         alt="{{ i.title }}"
                                          loading="lazy">
                                 </div>
                             </a>
+                            <button class="wishlist-btn"
+                                    data-id="{{ i.pk }}"
+                                    onclick="toggleWishlist(this)"
+                                    style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: all 0.3s ease;"
+                                    title="Wishlistga qo'shish">
+                                ♡
+                            </button>
                             <div class="product-info">
                                 <h6 class="product-title">
                                     <a href="{% url 'detail' i.pk %}">
@@ -119,16 +125,160 @@
                         </div>
                     </div>
                 {% endfor %}
-
-
             </div>
         </div>
     </section>
 
+    <script>
+        function toggleWishlist(btn) {
+            const id = btn.dataset.id;
+            const originalText = btn.textContent;
 
+            // Loading holati
+            btn.textContent = '⏳';
+            btn.disabled = true;
 
+            fetch(`{% url 'wish-list-toggle' %}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCookie('csrftoken')
+                },
+                body: JSON.stringify({ pk: id })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    if (data.active) {
+                        btn.textContent = '♥';
+                        btn.style.color = 'red';
+                        btn.style.fontWeight = 'bold';
+                        showNotification('✅ Mahsulot wishlistga qo\'shildi');
+                    } else {
+                        btn.textContent = '♡';
+                        btn.style.color = 'gray';
+                        btn.style.fontWeight = 'normal';
+                        showNotification('❌ Mahsulot wishlistdan o\'chirildi');
+                    }
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Xato:', error);
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    showNotification('Xato yuz berdi! Iltimos, qaytadan urinib ko\'ring', 'error');
+                });
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 12px 20px;
+            background: ${type === 'error' ? '#ff4757' : '#2ed573'};
+            color: white;
+            border-radius: 8px;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+            font-size: 14px;
+            animation: slideInRight 0.3s ease;
+        `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Sahifa yuklanganda wishlist holatini tekshirish
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+
+            wishlistBtns.forEach(btn => {
+                const id = btn.dataset.id;
+
+                fetch(`{% url 'check-wishlist' %}?pk=${id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.active) {
+                            btn.textContent = '♥';
+                            btn.style.color = 'red';
+                            btn.style.fontWeight = 'bold';
+                        } else {
+                            btn.textContent = '♡';
+                            btn.style.color = 'gray';
+                            btn.style.fontWeight = 'normal';
+                        }
+                    })
+                    .catch(error => console.error('Xato:', error));
+            });
+        });
+
+        // CSS animationlar qo'shish
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
+    .wishlist-btn {
+        transition: all 0.3s ease;
+    }
+
+    .wishlist-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .wishlist-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+`;
+        document.head.appendChild(styleSheet);
+    </script>
 
 {% endblock %}
-
-
-

@@ -1,10 +1,8 @@
 {% extends 'base/base.html' %}
-
-
 {% block body %}
     {% load static %}
     <meta name="author" content="">
-    <title>Quyoshdan himoyalovchi krem (oq karopka) - Alijahon.uz</title>
+    <title>{{ data.title }} - Alijahon.uz</title>
     <link rel="icon" type="image/png" href="{% static 'detail/alijahon.png' %}">
     <link href="{% static 'detail/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'detail/select2-bootstrap.css' %}" rel="stylesheet"/>
@@ -15,6 +13,64 @@
     <link rel="stylesheet" href="{% static 'detail/owl.carousel.css' %}">
     <link rel="stylesheet" href="{% static 'detail/owl.theme.css' %}">
 
+    <style>
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .quantity-label {
+            font-weight: 600;
+            margin: 0;
+        }
+        .quantity-counter {
+            display: inline-flex;
+            align-items: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .qty-btn {
+            background: #f8f9fa;
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #333;
+        }
+        .qty-btn:hover {
+            background: #007bff;
+            color: #fff;
+        }
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 2px solid #e0e0e0;
+            border-right: 2px solid #e0e0e0;
+            font-size: 16px;
+            font-weight: 600;
+            pointer-events: none;
+            background: #fff;
+        }
+        .qty-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .qty-btn:disabled:hover {
+            background: #f8f9fa;
+            color: #333;
+        }
+    </style>
 
     <section class="py-5 shop-single bg-light">
         <div class="container">
@@ -35,20 +91,18 @@
                             </div>
                             <div class="price-box">
                                 <h5>
-
-                                    <span class="product-price text-danger"
-                                          id="dynamic-price">{{ data.price }} so'm</span>
-
+                                    <span class="product-price text-danger" id="dynamic-price">{{ data.price }} so'm</span>
+                                    <small class="text-muted d-block mt-1" id="total-price"></small>
                                 </h5>
                             </div>
                             <div class="clearfix"></div>
-
                             <div class="product-variation">
-                                <form method="post" id="order-form">
-                                    <input type="hidden" name="csrfmiddlewaretoken"
-                                           value="QSTAv96Sapk6c5GGNSVkvreQr4w5koGqNXR35mXV5TKUK2IL0xmeEdGhcxtdrBU7">
+                                <form method="post" id="order-form" action="{% url 'success_accept' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ data.id }}">
                                     <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
-                                    <div class="controls">
+
+                                    <div class="controls mb-3">
                                         <label>Ism <span class="text-danger">*</span></label>
                                         <input type="text"
                                                placeholder="Ism"
@@ -61,7 +115,8 @@
                                                title="Faqat harf va raqam kiritish mumkin">
                                         <p class="help-block"></p>
                                     </div>
-                                    <div class="controls">
+
+                                    <div class="controls mb-3">
                                         <label>Telefon <span class="text-danger">*</span></label>
                                         <input type="text" placeholder="Telefon" class="form-control"
                                                id="phone-mask-two"
@@ -69,53 +124,53 @@
                                         <p class="help-block"></p>
                                     </div>
 
+                                    <div class="quantity-wrapper">
+                                        <label class="quantity-label">Soni:</label>
+                                        <div class="quantity-counter">
+                                            <button type="button" class="qty-btn" id="decrease-btn">−</button>
+                                            <input type="text" class="qty-input" id="quantity" name="quantity" value="1" readonly>
+                                            <button type="button" class="qty-btn" id="increase-btn">+</button>
+                                        </div>
+                                    </div>
 
-                                    <label for="quantity">Soni :</label>
-                                    <select name="quantity" id="quantity">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                    </select>
-                                    <span class="float-right">
-                              <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp; <i
-                                      class="icofont icofont-shopping-cart"></i> Buyurtma berish &nbsp;&nbsp;&nbsp;</button>
-                              </span>
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            <img width="30" height="30" src="https://img.icons8.com/pulsar-line/48/add-shopping-cart.png" alt="add-shopping-cart"/>
+                                            Buyurtma berish
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
-                            Yetkazib berish O'zbekiston bo'ylab 30 000 so'm
+                            <div class="mt-3 text-muted">
+                                <i class="icofont-truck-alt"></i> Yetkazib berish O'zbekiston bo'ylab 30 000 so'm
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <section id="det" class="pb-5 pt-0 shop-single-detail bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="rounded shadow-sm bg-white">
                         <ul class="nav nav-pills p-3" id="pills-tab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                                                    href="#pills-home" role="tab" aria-controls="pills-home"
-                                                    aria-selected="true">Batafsil</a>
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                   href="#pills-home" role="tab" aria-controls="pills-home"
+                                   aria-selected="true">Batafsil</a>
                             </li>
                         </ul>
                         <div class="tab-content p-4 border-top" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                  aria-labelledby="pills-home-tab">
-                                <p>
-                                <p>{{ data.desc }}</p>
+                                <p>{{ data.description }}</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;To'lovni mahsulotni qo'lingizga olganda qilasiz</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;O‘zbekiston bo‘ylab yetkazib berish xizmati mavjud</p>
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -124,5 +179,48 @@
         </div>
     </section>
 
+    <script>
+        const decreaseBtn = document.getElementById('decrease-btn');
+        const increaseBtn = document.getElementById('increase-btn');
+        const quantityInput = document.getElementById('quantity');
+        const dynamicPrice = document.getElementById('dynamic-price');
+        const totalPrice = document.getElementById('total-price');
 
+        const basePrice = parseInt('{{ data.price }}'.replace(/\s/g, '')) || 0;
+        const minQty = 1;
+        const maxQty = 99;
+
+        function updatePrice() {
+            const qty = parseInt(quantityInput.value);
+            const total = basePrice * qty;
+            const formattedTotal = total.toLocaleString('uz-UZ').replace(/,/g, ' ');
+
+            if (qty > 1) {
+                totalPrice.textContent = `Jami: ${formattedTotal} so'm`;
+            } else {
+                totalPrice.textContent = '';
+            }
+
+            decreaseBtn.disabled = qty <= minQty;
+            increaseBtn.disabled = qty >= maxQty;
+        }
+
+        decreaseBtn.addEventListener('click', () => {
+            let qty = parseInt(quantityInput.value);
+            if (qty > minQty) {
+                quantityInput.value = qty - 1;
+                updatePrice();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            let qty = parseInt(quantityInput.value);
+            if (qty < maxQty) {
+                quantityInput.value = qty + 1;
+                updatePrice();
+            }
+        });
+
+        updatePrice();
+    </script>
 {% endblock %}
